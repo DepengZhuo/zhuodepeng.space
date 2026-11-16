@@ -1,818 +1,2010 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang='zh-CN'>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#111111" />
-  <meta name="description" content="HAHA Vending Location Pitch & Partnership Proposal Studio" />
-  <title>Location Pitch Builder | HAHA Vending</title>
-  <link rel="stylesheet" href="./styles/main.css" />
+    <meta name="baidu-site-verification" content="codeva-wEObIvql9t" />
+    <meta charset='utf-8'/>
+    <meta name="baidu-site-verification" content="codeva-5WJZ7zBbwD" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="卓德鹏 (Devin) 的个人主页：数据、科技、创意的混合体。项目、灵感与思考、小互动。">
+    <title>卓德鹏 - 个人主页</title>
+
+<!-- 👇👇👇 把新代码直接【新增】塞在这里，上下都不删 👇👇👇 -->
+    
+    <!-- ==================== 网页图标 (Favicon) ==================== -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%231E293B%22/><text x=%2250%22 y=%2270%22 font-size=%2265%22 fill=%22%233B82F6%22 font-family=%22sans-serif%22 font-weight=%22bold%22 text-anchor=%22middle%22>D</text></svg>">
+
+    <!-- ==================== OpenGraph 社交分享标签 ==================== -->
+    <meta property="og:title" content="卓德鹏 (Devin) - 个人主页">
+    <meta property="og:description" content="数据、科技、创意的混合体。不只是咸鱼，也爱探索新鲜事物。来看看我的项目与思考 🌏">
+    <meta property="og:image" content="https://design.gemcoder.com/api/upload/appResource/H8vEIys7nIV0MjMTqpEdN.jpg">
+    <meta property="og:url" content="https://zhuodepeng.fun/">
+    <meta property="og:type" content="website">
+    <!-- 👆👆👆 新代码结束，下面是你原本自带的代码，原封不动 👆👆👆 -->
+    
+        <script src='https://cdn.tailwindcss.com'></script>
+    <link href='https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css' rel='stylesheet'/>
+    
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#3B82F6',
+              secondary: '#10B981',
+              accent: '#8B5CF6',
+              dark: '#1E293B',
+              light: '#F8FAFC'
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif']
+            },
+            animation: {
+              'bounce-slow': 'bounce 3s infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'wiggle': 'wiggle 1s ease-in-out infinite'
+            },
+            keyframes: {
+              wiggle: {
+                '0%, 100%': { transform: 'rotate(-3deg)' },
+                '50%': { transform: 'rotate(3deg)' }
+              }
+            }
+          }
+        }
+      };
+    </script>
+
+    <style type='text/tailwindcss'>
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-custom {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .bg-gradient-custom {
+                background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+            }
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+            }
+            .tooltip {
+                @apply invisible absolute bg-dark text-white text-xs rounded py-1 px-2 -mt-10 opacity-0 transition-opacity duration-300 z-10;
+            }
+            .has-tooltip:hover .tooltip {
+                @apply visible opacity-100;
+            }
+        }
+    </style>
+
+<style>
+    #secret-tip {
+        position: fixed; z-index: 9999; max-width: 260px;
+        padding: 9px 16px; border-radius: 999px;
+        background: #1e293b; color: #fff; font-size: 13px; white-space: nowrap;
+        border: 1px solid rgba(255,255,255,0.14);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+        opacity: 0; transform: translateY(6px) scale(0.96); pointer-events: none;
+        transition: opacity .25s ease, transform .25s cubic-bezier(.16,1,.3,1);
+    }
+    #secret-tip.show { opacity: 1; transform: translateY(0) scale(1); }
+</style>
 </head>
-<body>
-  <div class="app-shell">
-    <aside class="sidebar" id="sidebar">
-      <a class="brand" href="#page-dashboard" data-goto="dashboard" aria-label="HAHA Vending Home">
-        <span class="brand-text"><strong>HAHA VENDING</strong><small>LOCATION PITCH BUILDER</small></span>
-      </a>
-      <div class="sidebar-label">Workspace</div>
-      <nav class="main-nav" aria-label="Main Navigation">
-        <button class="nav-item active" type="button" data-page="dashboard"><span class="nav-icon">▤</span> Dashboard</button>
-        <button class="nav-item" type="button" data-page="scorer"><span class="nav-icon">◉</span> Location Assessment</button>
-        <button class="nav-item" type="button" data-page="roi"><span class="nav-icon">$</span> Site Partner Earnings</button>
-        <button class="nav-item" type="button" data-page="proposal"><span class="nav-icon">≡</span> Business Proposal</button>
-        <button class="nav-item" type="button" data-page="compliance"><span class="nav-icon">⬡</span> Compliance Documents</button>
-        <button class="nav-item" type="button" data-page="projects"><span class="nav-icon">▨</span> My Projects</button>
-      </nav>
-      <div class="sidebar-bottom">
-        <div class="sidebar-note"><span class="status-dot"></span><div><strong>Local Workspace</strong><small>Data is saved in this browser</small></div></div>
-        <div class="sidebar-footer">HAHA VENDING<br/>© 2026 HAHA Vending</div>
-      </div>
-    </aside>
 
-    <main class="main-area">
-      <header class="topbar">
-        <button class="mobile-menu" id="mobileMenu" type="button" aria-label="Open menu">☰</button>
-        <div class="breadcrumb"><span>HAHA VENDING</span><b>/</b><strong id="breadcrumbCurrent">Dashboard</strong></div>
-        <div class="topbar-actions">
-          <span class="local-indicator"><i></i> Saved locally</span>
-          <button class="button button-dark button-small" id="newProjectTop" type="button">+ New Location Project</button>
-          <button class="button button-outline button-small" id="languageToggle" type="button" aria-label="切换到中文">中文</button>
+<body class='bg-gray-50 text-gray-800 font-sans'>
+    
+    <div class='min-h-screen flex flex-col'>
+
+        <!-- ================================================================= -->
+        <!-- 1. 顶部导航栏 (NAVBAR)                                            -->
+        <!-- ================================================================= -->
+        <nav class='sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm'>
+            <div class='container mx-auto px-4 sm:px-6 lg:px-8'>
+                <div class='flex justify-between h-16'>
+                    <div class='flex items-center'>
+                        <a class='flex-shrink-0 flex items-center' href='index.html'>
+                            <span class='text-primary font-bold text-xl'>卓德鹏</span>
+                        </a>
+                    </div>
+                    <div class='hidden md:flex items-center space-x-8'>
+                        <a class='text-gray-600 hover:text-primary transition-custom px-3 py-2 text-base font-medium' href='#welcome'>首页</a>
+                        <a class='text-gray-600 hover:text-primary transition-custom px-3 py-2 text-base font-medium' href='#about'>关于我</a>
+                        <a class='text-gray-600 hover:text-primary transition-custom px-3 py-2 text-base font-medium' href='#universe'>我的世界</a>
+                        <a class='text-gray-600 hover:text-primary transition-custom px-3 py-2 text-base font-medium' href='#thoughts'>灵感与思考</a>
+                        <a class='text-gray-600 hover:text-primary transition-custom px-3 py-2 text-base font-medium' href='#fun'>小互动</a>
+                        <a class='text-gray-600 hover:text-primary transition-custom px-3 py-2 text-base font-medium' href='#contact'>联系我</a>
+                    </div>
+                    <div class='md:hidden flex items-center'>
+                        <button type='button' class='text-gray-500 hover:text-primary focus:outline-none' id='mobile-menu-button'>
+                            <i class='fas fa-bars text-xl'></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 移动端抽屉菜单 -->
+            <div class='hidden md:hidden bg-white shadow-lg absolute w-full' id='mobile-menu'>
+                <div class='px-2 pt-2 pb-3 space-y-1 sm:px-3'>
+                    <a class='block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50' href='#welcome'>首页</a>
+                    <a class='block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50' href='#about'>关于我</a>
+                    <a class='block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50' href='#universe'>我的世界</a>
+                    <a class='block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50' href='#thoughts'>灵感与思考</a>
+                    <a class='block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50' href='#fun'>小互动</a>
+                    <a class='block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50' href='#contact'>联系我</a>
+                </div>
+            </div>
+        </nav>
+
+        <main id='main-content'>
+
+        <!-- ================================================================= -->
+<!-- 视觉过渡区：极简艺术横幅 (Devin 专属版)                           -->
+<!-- ================================================================= -->
+<style>
+    @font-face {
+        font-family: 'Helvetica Neue ME';
+        src: url('https://db.onlinewebfonts.com/c/95cecf452d3208890088a5b4c19c7ecf?family=Helvetica+Neue+ME');
+    }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes rise-in { from { opacity: 0; transform: translateY(4vh) scale(1.03); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes fade-up { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes line-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    .anim-fade-in { animation: fade-in 1.2s ease-out both; }
+    .anim-rise-in { animation: rise-in 1.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+    .anim-fade-up { animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+    .anim-line { animation: line-grow 1.1s cubic-bezier(0.76, 0, 0.24, 1) both; transform-origin: left; }
+    .marquee { animation: marquee-scroll 30s linear infinite; }
+</style>
+
+<section id="hero-banner" class="relative h-[100dvh] w-full overflow-hidden bg-black text-[#efeee9]" style="font-family: 'Helvetica Neue ME', Helvetica, Arial, sans-serif;">
+    
+    <!-- 背景图 (Layer 0) -->
+    <img src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260729_022513_486985a2-ac8c-4278-91a8-071dcd9fcaff.png&w=1280&q=85" 
+         alt="" class="anim-fade-in absolute inset-0 h-full w-full object-cover z-0" style="animation-delay: 0ms;" />
+
+    <!-- 滚动字幕 (Layer 10) -->
+    <div class="anim-fade-up absolute inset-x-0 top-[16vh] sm:top-[14vh] z-10 overflow-hidden" style="animation-delay: 500ms;">
+    <div class="marquee flex w-max whitespace-nowrap text-[16vh] sm:text-[26vh] leading-none text-[#efeee9]">
+    <!-- 第一段 (前半圈) -->
+    <span class="pr-[6vw]">Devin Zhuo&nbsp;&nbsp;&nbsp;卓德鹏&nbsp;</span>
+    <!-- 第二段 (后半圈，必须和上面一模一样！) -->
+    <span class="pr-[6vw]">Devin Zhuo&nbsp;&nbsp;&nbsp;卓德鹏&nbsp;</span>
+</div>
+    </div>
+
+    <!-- 底部横线 (Layer 10) -->
+    <div class="anim-line absolute inset-x-6 sm:inset-x-10 bottom-[5.5rem] sm:bottom-28 z-10 h-0.5 bg-[#efeee9]" style="animation-delay: 1200ms;"></div>
+
+    <!-- 底部文本 (Layer 10) -->
+    <div class="absolute inset-x-0 bottom-0 flex items-end justify-between px-6 pb-5 sm:px-10 sm:pb-8 text-xs sm:text-sm leading-relaxed z-10">
+        <div class="anim-fade-up flex flex-col" style="animation-delay: 1400ms;">
+            <span>AI Retail Specialist</span>
+            <span>Data & Tech Crafter</span>
+            <span>Think Deep. Build Better.</span>
         </div>
-      </header>
+        <div class="anim-fade-up flex flex-col text-right" style="animation-delay: 1550ms;">
+            <span>Designed by</span>
+            <span>Devin Zhuo</span>
+        </div>
+    </div>
 
-      <div class="page-content">
-        <!-- Page 1: Dashboard -->
-        <section class="page active" id="page-dashboard">
-          <div class="page-heading dashboard-heading">
-            <div>
-              <div class="eyebrow">LOCATION DEVELOPMENT WORKSPACE</div>
-              <h1>Turn every location into a new business opportunity.</h1>
-              <p>Prepare for location development with assessment, earnings estimates, proposals, and compliance files in one place.</p>
+<!-- 前景人像 (Layer 20) -->
+<!-- 1. 外层货槽：把 height 移到 class 里，使用 h-[65vh] (手机端) 和 md:h-[95vh] (电脑端) -->
+<div class="absolute bottom-0 left-1/2 z-20 pointer-events-none h-[70vh] md:h-[95vh]" 
+     style="transform: translateX(-50%);">
+     
+    <!-- 2. 内层商品：加入核心破局参数 max-w-none -->
+    <img src="images/devin_avatar3.png" 
+         alt="Devin Portrait" 
+         class="anim-rise-in w-auto h-full max-w-none object-contain" 
+         style="animation-delay: 300ms;" />
+</div>
+    
+    <!-- 顶部透明导航 (Layer 30) - 已删减多余链接 -->
+    <header class="absolute inset-x-0 top-0 z-30 flex items-start justify-between px-6 pt-6 sm:px-10 sm:pt-8 pointer-events-auto">
+        <a href="#welcome" class="anim-fade-up text-lg tracking-wide hover:opacity-60 duration-300" style="animation-delay: 800ms;">Devin</a>
+    </header>
+</section>
+
+        <!-- ================================================================= -->
+        <!-- 2. 首页欢迎区域 (HERO SECTION)                                    -->
+        <!-- ================================================================= -->
+        <section class='py-20 md:py-32 bg-gradient-to-br from-blue-50 to-purple-50' id='welcome'>
+            <div class='container mx-auto px-4 sm:px-6 lg:px-8'>
+                <div class='flex flex-col md:flex-row items-center'>
+                    
+                    <!-- 头像区域 -->
+                    <div class='w-full md:w-1/3 mb-10 md:mb-0 flex justify-center'>
+                        <div class='relative has-tooltip'>
+                        <!-- 优化后的头像外框代码 -->
+                        <div class='w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl'>
+                        <img alt='卓德鹏头像' class='w-full h-full object-cover transition-all duration-700 hover:brightness-110' src='https://design.gemcoder.com/api/upload/appResource/H8vEIys7nIV0MjMTqpEdN.jpg'/>
+                        </div>
+                            
+                            <span class='tooltip left-1/2 transform -translate-x-1/2'>哎呀，你偷看我啦，我在眨眼 😉</span>
+                            <div class='absolute -bottom-2 -right-2 bg-green-500 rounded-full w-10 h-10 flex items-center justify-center border-2 border-white shadow-md'>
+                                <i class='fas fa-check text-white'></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 标题与介绍文本 -->
+                    <div class='w-full md:w-2/3 text-center md:text-left'>
+                        <h1 class='text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight'>
+                            你好，我是 <span class='text-primary'>卓德鹏</span> 👋
+                        </h1>
+                        <div class='has-tooltip inline-block w-full'>
+    <!-- 增加 min-h-[80px] 保证打字机换行时下方按钮不会上下跳动 -->
+    <div class='mb-8 min-h-[80px]'>
+        
+        <!-- 第一行：动态打字（字号变大 text-3xl，加粗 font-bold） -->
+        <h2 class='text-2xl md:text-3xl text-primary font-bold mb-3'>
+            <span id="typed-text"></span>
+        </h2>
+        
+        <!-- 第二行：静态签名（字号缩小 text-lg，颜色调浅 text-gray-500） -->
+        <p class='text-lg text-gray-500 leading-relaxed'>
+            不只是咸鱼，也爱探索新鲜事物 🌏
+        </p>
+        
+    </div>
+    <span class='tooltip md:left-1/2 transform md:-translate-x-1/2'>想知道我最近折腾了什么？点我就告诉你！</span>
+</div>
+                        
+                        <div class='flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4'>
+                            <a class='bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-lg shadow-md transition-custom flex items-center justify-center' href='#about'>
+                                <i class='fas fa-user mr-2'></i> 了解更多
+                            </a>
+                            <a class='bg-white hover:bg-gray-50 text-primary border border-primary font-medium py-3 px-6 rounded-lg shadow-sm transition-custom flex items-center justify-center' href='#contact'>
+                                <i class='fas fa-envelope mr-2'></i> 联系我
+                            </a>
+                        </div>
+                        <div id='disclaimer' class='mt-8 text-gray-500 text-sm italic'></div>
+                    </div>
+
+                </div>
             </div>
-            <button class="button button-yellow" id="startNewProject" type="button">Start a New Project <span>↗</span></button>
-          </div>
-          <div class="hero-strip">
-            <div>
-              <span class="hero-kicker">LOCATION PITCH BUILDER</span>
-              <h2>Find. Evaluate. Pitch. Win.</h2>
-              <p>Present a clear business case with useful data and professional materials.</p>
-            </div>
-            <div class="hero-visual">
-              <div class="visual-frame">
-                <div class="machine-top">HAHA <span>VENDING</span></div>
-                <div class="machine-screen"><div class="screen-label">SMART<br/>VENDING</div></div>
-                <div class="shelf-row"><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="shelf-row"><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="shelf-row"><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="machine-foot"></div>
-              </div>
-            </div>
-          </div>
-          <div class="section-head">
-            <div><h2>Project Overview</h2><p>Location projects saved in this browser</p></div>
-            <button class="text-button" type="button" data-goto="projects">View All Projects →</button>
-          </div>
-          <div class="stats-grid" id="dashboardStats"></div>
-          <div class="dashboard-grid">
-            <div class="panel recent-panel">
-              <div class="panel-head">
-                <div><h3>Recent Projects</h3><p>Continue working on locations in progress</p></div>
-                <button class="text-button" type="button" data-goto="projects">All Projects →</button>
-              </div>
-              <div id="recentProjects" class="recent-list"></div>
-            </div>
-            <div class="panel quick-panel">
-              <div class="panel-head"><div><h3>Quick Start</h3><p>Choose what to work on next</p></div></div>
-              <button class="quick-link" type="button" data-goto="scorer"><span class="quick-number">01</span><span><strong>Assess a Location</strong><small>Review site conditions and business potential</small></span><b>↗</b></button>
-              <button class="quick-link" type="button" data-goto="roi"><span class="quick-number">02</span><span><strong>Estimate Partner Earnings</strong><small>Calculate site partner share and term earnings</small></span><b>↗</b></button>
-              <button class="quick-link" type="button" data-goto="proposal"><span class="quick-number">03</span><span><strong>Create a Business Proposal</strong><small>Prepare a proposal for a property</small></span><b>↗</b></button>
-              <button class="quick-link" type="button" data-goto="compliance"><span class="quick-number">04</span><span><strong>Prepare Compliance Documents</strong><small>Manage certificates, insurance, and tax documents</small></span><b>↗</b></button>
-            </div>
-          </div>
-          <div class="notice-bar">
-            <span>!</span>
-            <p><strong>Note:</strong> Project data is saved locally in this browser. Earnings figures are illustrative estimates and do not constitute a sales or operating guarantee.</p>
-          </div>
         </section>
 
-        <!-- Page 2: Location Assessment -->
-        <section class="page" id="page-scorer">
-          <div class="page-heading scorer-page-heading">
-            <div class="scorer-heading-main">
+
+        <!-- ================================================================= -->
+        <!-- 3. 关于我板块 (ABOUT ME)                                          -->
+        <!-- ================================================================= -->
+        <section class='py-20 bg-white' id='about'>
+            <div class='container mx-auto px-4 sm:px-6 lg:px-8'>
+                <div class='text-center mb-16'>
+                    <h2 class='text-3xl md:text-4xl font-bold text-gray-900 mb-4'>关于我</h2>
+                    <div class='w-20 h-1 bg-primary mx-auto rounded-full'></div>
+                </div>
+                
+                <div class='max-w-3xl mx-auto'>
+                    <!-- 个人简介描述 -->
+                    <div class='mb-12'>
+                        <h3 class='text-2xl font-semibold text-gray-800 mb-6 flex items-center'>
+                            <span class='bg-primary/10 text-primary p-2 rounded-full mr-3'>
+                                <i class='fas fa-user-circle'></i>
+                            </span>
+                            一个没有脱离低级趣味的人 🛠️
+                        </h3>
+                        <div class='bg-gray-50 rounded-xl p-6 shadow-sm'>
+                            <p class='text-gray-700 mb-4 leading-relaxed'>身高 182cm，体重 80kg，目标 75kg 💪</p>
+                            <p class='text-gray-700 mb-4 leading-relaxed'>Nothing Changes if nothing change 📊💼</p>
+                            <p class='text-gray-700 mb-4 leading-relaxed'>除了控制不住的体重 🏊‍♂️🏃‍♂️，还有随波逐流的人生 📈</p>
+                             <p class='text-gray-700 leading-relaxed'>Through chances various, through all vicissitudes, we make our way.……</p>
+                        </div>
+                    </div>
+
+                    <!-- 技能与兴趣标签网格 -->
+                    <div class='grid grid-cols-1 md:grid-cols-2 gap-8'>
+                        <!-- 技能标签 -->
+                        <div>
+                            <h3 class='text-xl font-semibold text-gray-800 mb-4'>技能</h3>
+                            <div class='flex flex-wrap gap-4'>
+                                <div class='has-tooltip inline-block'>
+                                    <span class='bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full transition-custom hover:bg-blue-200 cursor-pointer'>数据通信</span>
+                                    <span class='tooltip left-1/2 transform -translate-x-1/2'>点我，我可以帮你问AI 🎲</span>
+                                </div>
+                                <div class='has-tooltip inline-block'>
+                                    <span class='bg-green-100 text-green-800 text-sm font-medium px-4 py-2 rounded-full transition-custom hover:bg-green-200 cursor-pointer'>市场营销</span>
+                                    <span class='tooltip left-1/2 transform -translate-x-1/2'>点我，我也不知道什么是市场营销 🎲</span>
+                                </div>
+                                <div class='has-tooltip inline-block'>
+                                    <span class='bg-purple-100 text-purple-800 text-sm font-medium px-4 py-2 rounded-full transition-custom hover:bg-purple-200 cursor-pointer'>数据分析</span>
+                                    <span class='tooltip left-1/2 transform -translate-x-1/2'>点我，我Excel做表贼溜 🎲</span>
+                                </div>
+                                <div class='has-tooltip inline-block'>
+                                    <span class='bg-yellow-100 text-yellow-800 text-sm font-medium px-4 py-2 rounded-full transition-custom hover:bg-yellow-200 cursor-pointer'>图表设计</span>
+                                    <span class='tooltip left-1/2 transform -translate-x-1/2'>点我，我教你如何把数据玩成游戏 🎲</span>
+                                </div>
+                                <div class='has-tooltip inline-block'>
+                                    <span class='bg-red-100 text-red-800 text-sm font-medium px-4 py-2 rounded-full transition-custom hover:bg-red-200 cursor-pointer'>项目管理</span>
+                                    <span class='tooltip left-1/2 transform -translate-x-1/2'>点我，我教你怎么跟别人扯皮 🎲</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 兴趣标签 -->
+                        <div>
+                            <h3 class='text-xl font-semibold text-gray-800 mb-4'>兴趣</h3>
+                            <div class='flex flex-wrap gap-3'>
+                                <div class='has-tooltip inline-block'>
+                                    <span class='bg-indigo-100 text-indigo-800 text-sm font-medium px-4 py-2 rounded-full transition-custom hover:bg-indigo-200 cursor-pointer'>健身</span>
+                                    <span class='tooltip left-1/2 transform -translate-x-1/2'>偷偷告诉你，我健身是怕自己猝死💡</span>
+                                </div>
+                                <div class='has-tooltip inline-block'>
+                                    <span class='bg-pink-100 text-pink-800 text-sm font-medium px-4 py-2 rounded-full transition-custom hover:bg-pink-200 cursor-pointer'>游泳</span>
+                                    <span class='tooltip left-1/2 transform -translate-x-1/2'>偷偷告诉你，游完泳真的可以睡得安稳些 💡</span>
+                                </div>
+                                <div class='has-tooltip inline-block'>
+                                    <span class='bg-orange-100 text-orange-800 text-sm font-medium px-4 py-2 rounded-full transition-custom hover:bg-orange-200 cursor-pointer'>爬山（仅限八分山）</span>
+                                    <span class='tooltip left-1/2 transform -translate-x-1/2'>偷偷告诉你，八分山40分钟就能上去 💡</span>
+                                </div>
+                                <div class='has-tooltip inline-block'>
+                                    <span class='bg-teal-100 text-teal-800 text-sm font-medium px-4 py-2 rounded-full transition-custom hover:bg-teal-200 cursor-pointer'>折腾网站</span>
+                                    <span class='tooltip left-1/2 transform -translate-x-1/2'>偷偷告诉你，这个网站全是AI做的 💡</span>
+                                </div>
+                                <div class='has-tooltip inline-block'>
+                                    <span class='bg-gray-100 text-gray-800 text-sm font-medium px-4 py-2 rounded-full transition-custom hover:bg-gray-200 cursor-pointer'>研究技术</span>
+                                    <span class='tooltip left-1/2 transform -translate-x-1/2'>偷偷告诉你，其实我啥也不会 💡</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+<!-- ================================================================= -->
+<!-- 4. 我的世界板块 (UNIVERSE - 卡片展示网格 + 动态筛选)                 -->
+<!-- ================================================================= -->
+<section class='py-20 bg-gray-50' id='universe'>
+    <div class='container mx-auto px-4 sm:px-6 lg:px-8'>
+        
+        <!-- 标题区 -->
+        <div class='text-center mb-10'>
+            <h2 class='text-3xl md:text-4xl font-bold text-gray-900 mb-4'>我的世界</h2>
+            <p class='text-xl text-gray-600 max-w-3xl mx-auto'>工作、项目与爱好 🌟</p>
+            <div class='w-20 h-1 bg-primary mx-auto mt-4 rounded-full'></div>
+        </div>
+
+        <!-- 👇 新增：分类筛选按钮区 👇 -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12" id="portfolio-filters">
+            <!-- 默认选中的按钮：蓝底白字 -->
+            <button type='button' class="filter-btn px-6 py-2 rounded-full border border-primary bg-primary text-white font-medium transition-custom shadow-sm" data-filter="all">全部</button>
+            <!-- 其他未选中的按钮：白底灰字 -->
+            <button type='button' class="filter-btn px-6 py-2 rounded-full border border-gray-300 bg-white text-gray-600 font-medium transition-custom hover:border-primary hover:text-primary hover:shadow-sm" data-filter="tech">科技与折腾</button>
+            <button type='button' class="filter-btn px-6 py-2 rounded-full border border-gray-300 bg-white text-gray-600 font-medium transition-custom hover:border-primary hover:text-primary hover:shadow-sm" data-filter="reading">阅读与思考</button>
+            <button type='button' class="filter-btn px-6 py-2 rounded-full border border-gray-300 bg-white text-gray-600 font-medium transition-custom hover:border-primary hover:text-primary hover:shadow-sm" data-filter="tools">实用工具</button>
+        </div>
+
+        <!-- 卡片网格容器 -->
+        <div class='grid grid-cols-1 md:grid-cols-3 gap-8'>
+
+            <!-- ------------------- 【卡片 Block 1：Merry Christmas】 ------------------- -->
+            <!-- 💡 注意这里的 class 加上了 portfolio-card，并加上了 data-category="tech" -->
+            <div class='portfolio-card bg-white rounded-xl shadow-md overflow-hidden card-hover' data-category="tech">
+                <div class='h-48 overflow-hidden'>
+                    <img alt='圣诞树' class='w-full h-full object-cover transition-transform duration-500 hover:scale-110' src='https://images.unsplash.com/photo-1639329177812-b3f767486bf5?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>
+                </div>
+                <div class='p-6'>
+                    <div class='has-tooltip inline-block mb-4'>
+                        <h3 class='text-xl font-semibold text-gray-800'>Merry Christmas</h3>
+                        <span class='tooltip left-1/2 transform -translate-x-1/2'>圣诞节快乐，一颗圣诞树送给大家 📡</span>
+                    </div>
+                    <p class='text-gray-600 mb-4'>Light up the night. Merry Christmas.</p>
+                    <a class='text-primary font-medium inline-flex items-center transition-custom hover:text-primary/80' href='articles/Christmas Tree.html' target='_blank' rel='noopener'>
+                        了解更多 <i class='fas fa-arrow-right ml-2'></i>
+                    </a>
+                </div>
+            </div>
+
+   <!-- ------------------- 【卡片 Block 2：好书推荐】 ------------------- -->
+<div class='portfolio-card bg-white rounded-xl shadow-md overflow-hidden card-hover' data-category="reading">
+    <div class='h-48 overflow-hidden'>
+        <img alt='好书推荐' class='w-full h-full object-cover transition-transform duration-500 hover:scale-110' src='https://plus.unsplash.com/premium_photo-1676469292218-95d6c3a036bc?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>
+    </div>
+    <div class='p-6'>
+        <div class='has-tooltip inline-block mb-4'>
+            <h3 class='text-xl font-semibold text-gray-800'>明朝那些事儿</h3>
+            <span class='tooltip left-1/2 transform -translate-x-1/2'>其实，文章是AI写的 🌐✨</span>
+        </div>
+        <p class='text-gray-600 mb-4'>所谓百年功名，千秋霸业，万古流芳，与一件事情相比，其实算不了什么，这件事情就是用你喜欢的方式度过一生。</p>
+        
+        <!-- 💡 核心修改点：这里的链接指向新的 article-test.html -->
+        <a class='text-primary font-medium inline-flex items-center transition-custom hover:text-primary/80' href='articles/article-test.html' target='_blank' rel='noopener'>
+            阅读全文 <i class='fas fa-arrow-right ml-2'></i>
+        </a>
+    </div>
+</div>
+
+            <!-- ------------------- 【卡片 Block 3：价值投资计算器】 ------------------- -->
+            <!-- 💡 分类标签设为了 "tools" -->
+            <div class='portfolio-card bg-white rounded-xl shadow-md overflow-hidden card-hover' data-category="tools">
+                <div class='h-48 overflow-hidden'>
+                    <img alt='价值投资计算器' class='w-full h-full object-cover transition-transform duration-500 hover:scale-110' src='https://images.unsplash.com/photo-1628935687655-8530bb7211bc?q=80&w=711&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>
+                </div>
+                <div class='p-6'>
+                    <div class='has-tooltip inline-block mb-4'>
+                        <h3 class='text-xl font-semibold text-gray-800'>价值投资计算器</h3>
+                        <span class='tooltip left-1/2 transform -translate-x-1/2'>AI导AI弄出来的价值计算器，你值得拥有🔥</span>
+                    </div>
+                    <p class='text-gray-600 mb-4'>把需要的原始数据复制丢给AI，就会给出买入建议</p>
+                    <a class='text-primary font-medium inline-flex items-center transition-custom hover:text-primary/80' href='articles/Value_Calculator_V3.html' target='_blank' rel='noopener'>
+                        点击计算 <i class='fas fa-arrow-right ml-2'></i>
+                    </a>
+                </div>
+            </div>
+          <!-- ▲▲▲ Block 3 结束位置 ▲▲▲ -->
+
+<!-- ▼▼▼ 请将 Block 4 粘贴在这里 (紧挨着 Block 3 后面) ▼▼▼ -->
+            <!-- ------------------- 【卡片 Block 4：动态估值弹窗】 ------------------- -->
+            <div class='portfolio-card bg-white rounded-xl shadow-md overflow-hidden card-hover cursor-pointer' data-category="tools" id="open-valuation-btn">
+                <div class='h-48 overflow-hidden bg-gray-100'>
+                    <img alt='投资估值看板' class='w-full h-full object-cover transition-transform duration-500 hover:scale-110' src='https://plus.unsplash.com/premium_photo-1681487769650-a0c3fbaed85a?q=80&w=1555&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>
+                </div>
+                <div class='p-6'>
+                    <div class='has-tooltip inline-block mb-4'>
+                        <h3 class='text-xl font-semibold text-gray-800'>动态投资估值看板</h3>
+                        <span class='tooltip left-1/2 transform -translate-x-1/2'>一键测算，告别情绪投资 📈</span>
+                    </div>
+                    <p class='text-gray-600 mb-4'>输入指数基金参数，运用博格公式和盈利收益率法，自动测算当前资产估值水位并输出投资建议。</p>
+                    
+                    <a class='text-primary font-medium inline-flex items-center transition-custom hover:text-primary/80' href='javascript:void(0)'>
+                        打开看板 <i class='fas fa-chart-line ml-2'></i>
+                    </a>
+                </div>
+            </div>
+            <!-- ▲▲▲ Block 4 结束位置 ▲▲▲ -->
+
+
+                     <!-- ------------------- 【卡片 Block 5：纪念册】 ------------------- -->
+            <!-- 💡 分类标签设为了 "tools" -->
+            <div class='portfolio-card bg-white rounded-xl shadow-md overflow-hidden card-hover' data-category="reading">
+                <div class='h-48 overflow-hidden'>
+                    <img alt='相册' class='w-full h-full object-cover transition-transform duration-500 hover:scale-110' src='https://plus.unsplash.com/premium_vector-1711987353813-68a5bdb6f207?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>
+                </div>
+                <div class='p-6'>
+                    <div class='has-tooltip inline-block mb-4'>
+                        <h3 class='text-xl font-semibold text-gray-800'>纪念册</h3>
+                        <span class='tooltip left-1/2 transform -translate-x-1/2'>on my way</span>
+                    </div>
+                    <p class='text-gray-600 mb-4'>人生海海，山山而川</p>
+                    <a class='text-primary font-medium inline-flex items-center transition-custom hover:text-primary/80' href='articles/gallery.html' target='_blank' rel='noopener'>
+                        打开相册 <i class='fas fa-arrow-right ml-2'></i>
+                    </a>
+                </div>
+            </div>
+          <!-- ▲▲▲ Block 5 结束位置 ▲▲▲ -->
+
+                    <!-- ------------------- 【卡片 Block 6：Lithos · 岩层之上】 ------------------- -->
+                    <div class='portfolio-card bg-white rounded-xl shadow-md overflow-hidden card-hover' data-category="tech">
+                        <div class='h-48 overflow-hidden'>
+                            <img alt='Lithos 岩层之上' class='w-full h-full object-cover transition-transform duration-500 hover:scale-110' src='https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260609_195923_b0ba8ace-1d1d-4f2c-9a28-1ab84b330680.png&w=1280&q=85'/>
+                        </div>
+                        <div class='p-6'>
+                            <div class='has-tooltip inline-block mb-4'>
+                                <h3 class='text-xl font-semibold text-gray-800'>Lithos · 岩层之上</h3>
+                                <span class='tooltip left-1/2 transform -translate-x-1/2'>光标扫过，露出另一层世界 ⛰️</span>
+                            </div>
+                            <p class='text-gray-600 mb-4'>一个关于地质与深时的沉浸式落地页：光标聚光揭示岩层，液态玻璃仪表盘与现场勘探。</p>
+                            <a class='text-primary font-medium inline-flex items-center transition-custom hover:text-primary/80' href='articles/lithos-hero.html' target='_blank' rel='noopener'>
+                                打开页面 <i class='fas fa-arrow-right ml-2'></i>
+                            </a>
+                        </div>
+                    </div>
+   
+
+            
+                    <!-- 💡 后期扩展提示：如果想新增卡片 4、卡片 5，请复制上方任意一个 Block 粘贴在此处 -->
+
+                </div>
+                <!-- 卡片三列网格容器结束 -->
+
+            </div>
+        </section>
+
+<!-- ================================================================= -->
+        <!-- 5. 灵感与思考板块 (THOUGHTS - 文章列表)                          -->
+        <!-- 💡 提示：增加新文章时，直接在 <ol class="xiaozhuo-fables__list"> 中复制 <li> Block -->
+        <!-- ================================================================= -->
+        
+        <style>
+          /* ================================
+             小卓的寓言故事 / Editorial Archive
+             Self-contained section, no dependencies.
+             Scope all styles under .xiaozhuo-fables
+             so it can be dropped into an existing page.
+             ================================ */
+        
+          .xiaozhuo-fables {
+            --fz-text: #111111;
+            --fz-muted: #777777;
+            --fz-line: #dedede;
+            --fz-soft: #f6f6f3;
+            --fz-accent: #111111;
+            --fz-max: 1180px;
+        
+            position: relative;
+            width: 100%;
+            padding: 120px 32px 130px;
+            color: var(--fz-text);
+            background: transparent;
+            font-family: inherit;
+            box-sizing: border-box;
+          }
+        
+          .xiaozhuo-fables,
+          .xiaozhuo-fables * {
+            box-sizing: border-box;
+          }
+        
+          .xiaozhuo-fables__inner {
+            width: min(100%, var(--fz-max));
+            margin: 0 auto;
+          }
+        
+          /* ---------- Header ---------- */
+          .xiaozhuo-fables__header {
+            display: grid;
+            grid-template-columns: minmax(260px, 0.9fr) minmax(320px, 1.1fr);
+            gap: 64px;
+            padding-bottom: 76px;
+            border-bottom: 1px solid var(--fz-text);
+            align-items: end;
+          }
+        
+          .xiaozhuo-fables__eyebrow {
+            margin: 0 0 18px;
+            font-size: 11px;
+            line-height: 1;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--fz-muted);
+          }
+        
+          .xiaozhuo-fables__title {
+            margin: 0;
+            font-size: clamp(44px, 6.5vw, 86px);
+            line-height: 0.94;
+            font-weight: 500;
+            letter-spacing: -0.055em;
+          }
+        
+          .xiaozhuo-fables__intro {
+            max-width: 520px;
+            justify-self: end;
+          }
+        
+          .xiaozhuo-fables__intro p {
+            margin: 0;
+            font-size: clamp(17px, 1.6vw, 22px);
+            line-height: 1.6;
+            letter-spacing: -0.015em;
+          }
+        
+          .xiaozhuo-fables__intro-note {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 12px;
+            line-height: 1.6;
+            color: var(--fz-muted);
+          }
+        
+          /* ---------- Archive ---------- */
+          .xiaozhuo-fables__list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+          }
+        
+          .xiaozhuo-fables__item {
+            position: relative;
+            border-bottom: 1px solid var(--fz-line);
+          }
+          
+          /* 用于隐藏超出的文章 */
+          .xiaozhuo-fables__item.is-hidden {
+            display: none;
+          }
+        
+          .xiaozhuo-fables__link {
+            position: relative;
+            display: grid;
+            grid-template-columns: 64px minmax(0, 1fr) auto;
+            gap: 28px;
+            align-items: center;
+            min-height: 158px;
+            padding: 30px 0;
+            color: inherit;
+            text-decoration: none;
+            transition: padding 220ms ease;
+          }
+        
+          .xiaozhuo-fables__number {
+            align-self: start;
+            padding-top: 7px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            color: var(--fz-muted);
+          }
+        
+          .xiaozhuo-fables__body {
+            min-width: 0;
+          }
+        
+          .xiaozhuo-fables__name {
+            display: inline-block;
+            margin: 0;
+            font-size: clamp(25px, 3.1vw, 41px);
+            line-height: 1.08;
+            font-weight: 500;
+            letter-spacing: -0.04em;
+            transition: transform 260ms cubic-bezier(.22,.61,.36,1);
+          }
+        
+          .xiaozhuo-fables__summary {
+            margin: 12px 0 0;
+            max-width: 690px;
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--fz-muted);
+            transition: color 220ms ease;
+          }
+        
+          .xiaozhuo-fables__meta {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            white-space: nowrap;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 11px;
+            letter-spacing: 0.05em;
+            color: var(--fz-muted);
+            text-transform: uppercase;
+          }
+        
+          .xiaozhuo-fables__arrow {
+            display: inline-flex;
+            width: 30px;
+            height: 30px;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--fz-line);
+            border-radius: 999px;
+            font-size: 15px;
+            line-height: 1;
+            opacity: 0;
+            transform: translateX(-8px) rotate(-18deg);
+            transition:
+              opacity 220ms ease,
+              transform 260ms cubic-bezier(.22,.61,.36,1),
+              background-color 220ms ease,
+              color 220ms ease;
+          }
+        
+          /* ---------- Hover ---------- */
+          .xiaozhuo-fables__link::before {
+            content: "";
+            position: absolute;
+            inset: 0 -18px;
+            z-index: -1;
+            background: var(--fz-soft);
+            opacity: 0;
+            transform: scaleY(.72);
+            transform-origin: center;
+            transition: opacity 220ms ease, transform 260ms cubic-bezier(.22,.61,.36,1);
+          }
+        
+          .xiaozhuo-fables__link:hover,
+          .xiaozhuo-fables__link:focus-visible {
+            padding-left: 18px;
+            padding-right: 18px;
+            outline: none;
+          }
+        
+          .xiaozhuo-fables__link:hover::before,
+          .xiaozhuo-fables__link:focus-visible::before {
+            opacity: 1;
+            transform: scaleY(1);
+          }
+        
+          .xiaozhuo-fables__link:hover .xiaozhuo-fables__name,
+          .xiaozhuo-fables__link:focus-visible .xiaozhuo-fables__name {
+            transform: translateX(4px);
+          }
+        
+          .xiaozhuo-fables__link:hover .xiaozhuo-fables__summary,
+          .xiaozhuo-fables__link:focus-visible .xiaozhuo-fables__summary {
+            color: #444;
+          }
+        
+          .xiaozhuo-fables__link:hover .xiaozhuo-fables__arrow,
+          .xiaozhuo-fables__link:focus-visible .xiaozhuo-fables__arrow {
+            opacity: 1;
+            transform: translateX(0) rotate(0deg);
+            background: var(--fz-accent);
+            color: #fff;
+            border-color: var(--fz-accent);
+          }
+        
+          /* ---------- Footer ---------- */
+          .xiaozhuo-fables__footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+            padding-top: 28px;
+          }
+        
+          .xiaozhuo-fables__count {
+            margin: 0;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            color: var(--fz-muted);
+            text-transform: uppercase;
+          }
+        
+          .xiaozhuo-fables__footer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: inherit;
+            font-size: 13px;
+            text-decoration: none;
+            cursor: pointer;
+          }
+        
+          .xiaozhuo-fables__footer-link span {
+            display: inline-block;
+            transition: transform 220ms ease;
+          }
+        
+          .xiaozhuo-fables__footer-link:hover span {
+            transform: translateX(5px);
+          }
+        
+          /* ---------- Small decorative marker ---------- */
+          .xiaozhuo-fables__mark {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            margin-left: 8px;
+            border-radius: 50%;
+            background: currentColor;
+            vertical-align: 2px;
+          }
+        
+          /* ---------- Responsive ---------- */
+          @media (max-width: 820px) {
+            .xiaozhuo-fables {
+              padding: 82px 20px 92px;
+            }
+        
+            .xiaozhuo-fables__header {
+              grid-template-columns: 1fr;
+              gap: 34px;
+              padding-bottom: 52px;
+            }
+        
+            .xiaozhuo-fables__intro {
+              justify-self: start;
+            }
+        
+            .xiaozhuo-fables__link {
+              grid-template-columns: 42px minmax(0, 1fr) auto;
+              gap: 16px;
+              min-height: 140px;
+            }
+        
+            .xiaozhuo-fables__meta {
+              gap: 0;
+            }
+        
+            .xiaozhuo-fables__date,
+            .xiaozhuo-fables__read {
+              display: none;
+            }
+        
+            .xiaozhuo-fables__arrow {
+              opacity: 1;
+              transform: none;
+              width: 28px;
+              height: 28px;
+              border-color: var(--fz-line);
+              background: transparent;
+              color: var(--fz-text);
+            }
+        
+            .xiaozhuo-fables__link::before {
+              display: none;
+            }
+        
+            .xiaozhuo-fables__link:hover,
+            .xiaozhuo-fables__link:focus-visible {
+              padding-left: 0;
+              padding-right: 0;
+            }
+        
+            .xiaozhuo-fables__link:hover .xiaozhuo-fables__name,
+            .xiaozhuo-fables__link:focus-visible .xiaozhuo-fables__name {
+              transform: none;
+            }
+          }
+        
+          @media (max-width: 520px) {
+            .xiaozhuo-fables {
+              padding-left: 16px;
+              padding-right: 16px;
+            }
+        
+            .xiaozhuo-fables__eyebrow {
+              margin-bottom: 14px;
+            }
+        
+            .xiaozhuo-fables__title {
+              font-size: clamp(42px, 13vw, 64px);
+            }
+        
+            .xiaozhuo-fables__intro p {
+              font-size: 16px;
+            }
+        
+            .xiaozhuo-fables__link {
+              grid-template-columns: 34px minmax(0, 1fr) auto;
+              gap: 12px;
+              padding: 26px 0;
+            }
+        
+            .xiaozhuo-fables__number {
+              padding-top: 5px;
+            }
+        
+            .xiaozhuo-fables__name {
+              font-size: 25px;
+              line-height: 1.12;
+            }
+        
+            .xiaozhuo-fables__summary {
+              font-size: 13px;
+              line-height: 1.65;
+              margin-top: 9px;
+            }
+        
+            .xiaozhuo-fables__footer {
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 18px;
+            }
+          }
+        
+          @media (prefers-reduced-motion: reduce) {
+            .xiaozhuo-fables * {
+              transition: none !important;
+              scroll-behavior: auto !important;
+            }
+          }
+        </style>
+        
+        <section class="xiaozhuo-fables bg-white" aria-labelledby="fables-title" id="thoughts">
+          <div class="xiaozhuo-fables__inner">
+        
+            <header class="xiaozhuo-fables__header">
               <div>
-                <div class="eyebrow">01 / LOCATION SCORER</div>
-                <h1>Location Assessment</h1>
-                <p>Answer five quick questions to understand a location’s potential. You can use your best estimate — exact traffic data is not required.</p>
+                <p class="xiaozhuo-fables__eyebrow">Fables / 2026—</p>
+                <h2 class="xiaozhuo-fables__title" id="fables-title">
+                  小卓的<br />寓言故事<span class="xiaozhuo-fables__mark" aria-hidden="true"></span>
+                </h2>
               </div>
-              <div class="heading-actions">
-                <button class="button button-outline" id="resetScore" type="button">Reset Scores</button>
-                <button class="button button-dark" id="saveScore" type="button">Save Assessment</button>
+        
+              <div class="xiaozhuo-fables__intro">
+                <p>
+                  我希望写一个寓言，用一种间接的方式——就像寓言所做的那样——来阐释这个概念。
+                </p>
+                <span class="xiaozhuo-fables__intro-note">
+                  Little stories about big ideas.<br />
+                  Psychology · Economics · Statistics · Philosophy · Life
+                </span>
               </div>
-            </div>
+            </header>
+        
+            <ol class="xiaozhuo-fables__list" id="fables-list">
+              <li class="xiaozhuo-fables__item">
+                <a class="xiaozhuo-fables__link" href="articles/The-Second-Path-in-the-Forest.html" target="_blank">
+                  <span class="xiaozhuo-fables__number">01</span>
+                  <div class="xiaozhuo-fables__body">
+                    <h3 class="xiaozhuo-fables__name">森林里的第二条路</h3>
+                    <p class="xiaozhuo-fables__summary">安全，并不意味着危险的记忆已经消失。</p>
+                  </div>
+                  <span class="xiaozhuo-fables__meta">
+                    <span class="xiaozhuo-fables__date">SEP 17, 2026</span>
+                    <span class="xiaozhuo-fables__read">5 MIN</span>
+                    <span class="xiaozhuo-fables__arrow" aria-hidden="true">↗</span>
+                  </span>
+                </a>
+              </li>
+        
+              <li class="xiaozhuo-fables__item">
+                <a class="xiaozhuo-fables__link" href="articles/Three-Contracts-Beneath-the-Bell-Tower.html" target="_blank">
+                  <span class="xiaozhuo-fables__number">02</span>
+                  <div class="xiaozhuo-fables__body">
+                    <h3 class="xiaozhuo-fables__name">钟楼下的三份契约</h3>
+                    <p class="xiaozhuo-fables__summary">一个关于信息不对称、自我选择与人性的故事。</p>
+                  </div>
+                  <span class="xiaozhuo-fables__meta">
+                    <span class="xiaozhuo-fables__date">SEP 17, 2026</span>
+                    <span class="xiaozhuo-fables__read">5 MIN</span>
+                    <span class="xiaozhuo-fables__arrow" aria-hidden="true">↗</span>
+                  </span>
+                </a>
+              </li>
+        
+              <li class="xiaozhuo-fables__item">
+                <a class="xiaozhuo-fables__link" href="articles/Two-Towers-in-the-Valley.html" target="_blank">
+                  <span class="xiaozhuo-fables__number">03</span>
+                  <div class="xiaozhuo-fables__body">
+                    <h3 class="xiaozhuo-fables__name">山谷里的两座塔</h3>
+                    <p class="xiaozhuo-fables__summary">我们究竟是在观察世界，还是在观察一个被世界筛选过的子集？</p>
+                  </div>
+                  <span class="xiaozhuo-fables__meta">
+                    <span class="xiaozhuo-fables__date">SEP 17, 2026</span>
+                    <span class="xiaozhuo-fables__read">5 MIN</span>
+                    <span class="xiaozhuo-fables__arrow" aria-hidden="true">↗</span>
+                  </span>
+                </a>
+              </li>
+        
+              <li class="xiaozhuo-fables__item">
+                <a class="xiaozhuo-fables__link" href="articles/The-two-people-on-the-bridge.html" target="_blank">
+                  <span class="xiaozhuo-fables__number">04</span>
+                  <div class="xiaozhuo-fables__body">
+                    <h3 class="xiaozhuo-fables__name">桥上的两个人</h3>
+                    <p class="xiaozhuo-fables__summary">我们通常根据结果判断一个人，但结果往往并不完全由他决定。</p>
+                  </div>
+                  <span class="xiaozhuo-fables__meta">
+                    <span class="xiaozhuo-fables__date">SEP 17, 2026</span>
+                    <span class="xiaozhuo-fables__read">5 MIN</span>
+                    <span class="xiaozhuo-fables__arrow" aria-hidden="true">↗</span>
+                  </span>
+                </a>
+              </li>
+        
+              <li class="xiaozhuo-fables__item">
+                <a class="xiaozhuo-fables__link" href="articles/The_Lighthouse_Keeper.html" target="_blank">
+                  <span class="xiaozhuo-fables__number">05</span>
+                  <div class="xiaozhuo-fables__body">
+                    <h3 class="xiaozhuo-fables__name">灯塔守夜人</h3>
+                    <p class="xiaozhuo-fables__summary">一个关于道德风险：当看不见行动时，理性的人会如何做出选择？</p>
+                  </div>
+                  <span class="xiaozhuo-fables__meta">
+                    <span class="xiaozhuo-fables__date">SEP 18, 2026</span>
+                    <span class="xiaozhuo-fables__read">5 MIN</span>
+                    <span class="xiaozhuo-fables__arrow" aria-hidden="true">↗</span>
+                  </span>
+                </a>
+              </li>
+            </ol>
+
+                            <li class="xiaozhuo-fables__item">
+                <a class="xiaozhuo-fables__link" href="articles/the_second_road_in_the_forest.html" target="_blank">
+                  <span class="xiaozhuo-fables__number">06</span>
+                  <div class="xiaozhuo-fables__body">
+                    <h3 class="xiaozhuo-fables__name">森林里的第二条路 V2.0</h3>
+                    <p class="xiaozhuo-fables__summary">在第二条路出现之前，第一条路上的月亮，也是真的</p>
+                  </div>
+                  <span class="xiaozhuo-fables__meta">
+                    <span class="xiaozhuo-fables__date">OCT 19, 2026</span>
+                    <span class="xiaozhuo-fables__read">5 MIN</span>
+                    <span class="xiaozhuo-fables__arrow" aria-hidden="true">↗</span>
+                  </span>
+                </a>
+              </li>
+            </ol>
+        
+            <footer class="xiaozhuo-fables__footer">
+              <p class="xiaozhuo-fables__count" id="fables-count">05 STORIES · AND COUNTING</p>
+              <a class="xiaozhuo-fables__footer-link" id="load-more-btn" style="display: none;">
+                <span>继续往下读</span> →
+              </a>
+            </footer>
+        
           </div>
-
-          <div class="two-column-layout scorer-layout">
-            <div class="scorer-main-col">
-              <!-- 1. Location Details -->
-              <div class="panel form-panel">
-                <div class="panel-head">
-                  <div>
-                    <h3>1. Location Details</h3>
-                    <p>A few basics to identify the site. These fields do not affect the score.</p>
-                  </div>
-                  <span class="step-tag">STEP 01</span>
-                </div>
-                <div class="form-grid">
-                  <label class="field full"><span>Location Name <em>*</em></span><input id="locName" placeholder="e.g. Sunrise Apartments" /></label>
-                  <label class="field"><span>City / State</span><input id="locCity" placeholder="e.g. Tampa, FL" /></label>
-                  <label class="field"><span>Venue Type</span>
-                    <select id="locType">
-                      <option value="Gym & Fitness Center">Gym & Fitness Center</option>
-                      <option value="Factory & Industrial Plant">Factory & Industrial Plant</option>
-                      <option value="Airport & Transit Hub">Airport & Transit Hub</option>
-                      <option value="Apartment & Residential" selected>Apartment & Residential</option>
-                      <option value="Construction Site">Construction Site</option>
-                      <option value="Hospital & Medical Center">Hospital & Medical Center</option>
-                      <option value="Hotel & Hospitality">Hotel & Hospitality</option>
-                      <option value="Office & Corporate Campus">Office & Corporate Campus</option>
-                      <option value="School & University Campus">School & University Campus</option>
-                    </select>
-                  </label>
-                  <label class="field"><span>Estimated Daily Foot Traffic</span><input id="locTraffic" type="number" min="0" placeholder="e.g. 300" /></label>
-                  <label class="field"><span>Primary Audience</span><input id="locAudience" placeholder="e.g. Residents, employees, visitors" /></label>
-                  <label class="field"><span>Lease / Partnership Term (Months)</span><input id="locTerm" type="number" min="0" placeholder="e.g. 30" /></label>
-                  <label class="field"><span>Decision Maker / Contact</span><input id="locDecision" placeholder="e.g. Property Manager" /></label>
-                  <label class="field"><span>Lead Source</span>
-                    <select id="locSource">
-                      <option value="Direct Outreach">Direct Outreach</option>
-                      <option value="Locator Service">Locator Service</option>
-                      <option value="Website Inquiry">Website Inquiry</option>
-                      <option value="Customer / Friend Referral">Customer / Friend Referral</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </label>
-                  <label class="field full"><span>Site Observations and Notes</span><textarea id="locNotes" rows="3" placeholder="e.g. Lobby lounge area, keycard access for residents, no convenience store nearby..."></textarea></label>
-                </div>
-                <div class="decision-guide" id="decisionGuide" style="margin-bottom:0;">
-                  <div class="guide-icon">↗</div>
-                  <div class="guide-content">
-                    <strong>Recommended Contact</strong>
-                    <p id="decisionGuideText">Choose a venue type to see the usual decision maker.</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 2. Rate the Location -->
-              <div class="panel form-panel">
-                <div class="panel-head">
-                  <div>
-                    <h3>2. Rate the Location</h3>
-                    <p>Choose one answer for each item. Select "Not sure" when you need to check.</p>
-                  </div>
-                  <span class="step-tag">5 items · 2–3 min</span>
-                </div>
-                <div id="scoreFactors" class="criteria-list"></div>
-              </div>
-
-              <!-- 3. Deployment Readiness -->
-              <div class="panel form-panel">
-                <div class="panel-head">
-                  <div>
-                    <h3>3. Deployment Readiness</h3>
-                    <p>These checks do not affect the location score. They help identify what must be confirmed before installation.</p>
-                  </div>
-                  <span class="step-tag">Separate check</span>
-                </div>
-                <div id="readinessList" class="readiness-list"></div>
-                <div class="method-note">Tip: "Need to check" is a perfectly valid answer. It simply means this item should be confirmed before you move forward.</div>
-              </div>
-
-              <!-- 4. Assessment Summary -->
-              <div class="panel form-panel below-result" id="detailedResult" aria-live="polite">
-                <div class="panel-head">
-                  <div>
-                    <h3>Assessment Summary</h3>
-                    <p>A quick snapshot of what looks promising and what needs attention.</p>
-                  </div>
-                  <span class="step-tag">Your next move</span>
-                </div>
-                <div class="insight-grid">
-                  <div class="insight-box">
-                    <h4>What looks promising</h4>
-                    <ul id="strengthList"></ul>
-                  </div>
-                  <div class="insight-box">
-                    <h4>What needs attention</h4>
-                    <ul id="attentionList"></ul>
-                  </div>
-                </div>
-                <div class="next-step-callout">
-                  <div class="eyebrow">Recommended next step</div>
-                  <h4 id="scoreNextTitle">Visit the location</h4>
-                  <p id="scoreNextStep">Confirm the busiest hours, best placement area and basic operating conditions.</p>
-                </div>
-                <p class="scorer-disclaimer">This score is an initial site assessment based on the information provided. It is not a sales forecast or a guarantee of performance. Actual results depend on customer demand, product selection, pricing, placement and day-to-day operations.</p>
-              </div>
-
-              <div class="panel scorer-bottom-bar">
-                <button class="button button-dark button-wide" id="scoreToRoi" type="button">Next: Site Partner Earnings →</button>
-              </div>
-            </div>
-
-            <!-- Right Sidebar: LOCATION SCORE -->
-            <aside class="scorer-side-col" aria-label="Live assessment results">
-              <div class="panel score-result-panel">
-                <div class="score-main">
-                  <span class="result-label">LOCATION SCORE</span>
-                  <div class="score-line">
-                    <strong class="score-placeholder" id="scoreValue">—</strong>
-                    <small class="score-outof">/ 100</small>
-                  </div>
-                  <span class="status-chip" id="scoreStatus">Not completed</span>
-                  <div class="score-progress-wrap">
-                    <div class="score-progress-track"><div class="score-progress-fill" id="scoreProgressFill"></div></div>
-                    <div class="score-progress-meta">
-                      <span id="scoreProgressText">0 of 5 rated</span>
-                      <span id="scoreProgressPercent">0%</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="result-breakdown">
-                  <div class="mini-title">SCORE BREAKDOWN</div>
-                  <div id="scoreBreakdown" class="breakdown-list"></div>
-                </div>
-
-                <div class="deployment-status-wrap">
-                  <div class="mini-title">DEPLOYMENT STATUS</div>
-                  <div class="readiness-summary" id="readinessSummary">
-                    <span class="readiness-dot" id="readinessDot"></span>
-                    <div>
-                      <strong id="readinessHeadline">Checks not completed</strong>
-                      <p id="readinessCopy">Review the four conditions on the left before installation.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="panel scoring-guide-panel">
-                <h3 class="scoring-guide-title">How scoring works</h3>
-                <p class="scoring-guide-sub">Keep it simple: choose the answer that best describes the site.</p>
-                <div class="scoring-rules-list">
-                  <div class="scoring-rule-row"><span class="status-chip good">Strong</span><strong>100% of points</strong></div>
-                  <div class="scoring-rule-row"><span class="status-chip warn">Average</span><strong>50% of points</strong></div>
-                  <div class="scoring-rule-row"><span class="status-chip bad">Weak</span><strong>0 points</strong></div>
-                  <div class="scoring-rule-row"><span class="status-chip">Not sure</span><strong>Not scored</strong></div>
-                </div>
-                <p class="scorer-disclaimer" style="margin-top:12px;">"Not sure" is not a penalty. Complete all five ratings to receive a final score.</p>
-              </div>
-            </aside>
-          </div>
+          
+          <!-- 展开更多文章控制逻辑 -->
+          <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              const list = document.getElementById("fables-list");
+              const items = list.querySelectorAll(".xiaozhuo-fables__item");
+              const loadMoreBtn = document.getElementById("load-more-btn");
+              const countDisplay = document.getElementById("fables-count");
+              
+              const VISIBLE_COUNT = 5; // 默认展示的文章数量
+              
+              // 更新底部计数器文本
+              countDisplay.textContent = (items.length < 10 ? '0' + items.length : items.length) + " STORIES · AND COUNTING";
+        
+              // 如果文章超过默认数量，隐藏超出的部分并显示按钮
+              if (items.length > VISIBLE_COUNT) {
+                for (let i = VISIBLE_COUNT; i < items.length; i++) {
+                  items[i].classList.add("is-hidden");
+                }
+                loadMoreBtn.style.display = "inline-flex";
+              }
+        
+              // 按钮点击事件：展开所有文章并隐藏自己
+              if (loadMoreBtn) {
+                loadMoreBtn.addEventListener("click", function(e) {
+                  e.preventDefault();
+                  for (let i = VISIBLE_COUNT; i < items.length; i++) {
+                    items[i].classList.remove("is-hidden");
+                    items[i].style.opacity = "0";
+                    items[i].style.transform = "translateY(10px)";
+                    // 简单的错开动画
+                    setTimeout(() => {
+                        items[i].style.transition = "all 0.4s ease";
+                        items[i].style.opacity = "1";
+                        items[i].style.transform = "translateY(0)";
+                    }, 50 * (i - VISIBLE_COUNT));
+                  }
+                  loadMoreBtn.style.display = "none";
+                });
+              }
+            });
+          </script>
         </section>
 
-        <!-- Page 3: Site Partner Earnings -->
-        <section class="page" id="page-roi">
-          <div class="page-heading">
-            <div>
-              <div class="eyebrow">02 / PROPERTY PARTNERSHIP VALUE</div>
-              <h1>Site Partner Earnings</h1>
-              <p>Estimate what the property could earn and choose the right partnership setup for the location.</p>
+
+        <!-- ================================================================= -->
+        <!-- 6. 小互动板块 (FUN INTERACTION)                                   -->
+        <!-- ================================================================= -->
+        <section class='py-20 bg-gradient-to-br from-purple-50 to-blue-50' id='fun'>
+            <div class='container mx-auto px-4 sm:px-6 lg:px-8'>
+                <div class='text-center mb-16'>
+                    <h2 class='text-3xl md:text-4xl font-bold text-gray-900 mb-4'>小互动</h2>
+                    <p class='text-xl text-gray-600 max-w-3xl mx-auto'>来点互动吧 🎮</p>
+                    <div class='w-20 h-1 bg-primary mx-auto mt-4 rounded-full'></div>
+                </div>
+
+                <div class='grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto'>
+                    
+                    <!-- 1. 步数猜测卡片 -->
+                    <div class='bg-white rounded-xl shadow-md p-6 text-center card-hover'>
+                        <div class='w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4'>
+                            <i class='fas fa-walking text-blue-600 text-2xl'></i>
+                        </div>
+                        <h3 class='text-xl font-semibold text-gray-800 mb-2'>猜猜我今天走了多少步？</h3>
+                        <p class='text-gray-500 text-sm mb-4'>👣 日常活动的小挑战</p>
+                        <div class='has-tooltip mb-6'>
+                            <input class='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom mb-2' id='step-guess' placeholder='输入你的猜测' type='number' aria-label='猜测今天走了多少步'/>
+                            <span class='tooltip left-1/2 transform -translate-x-1/2'>别作弊哦，我可是有记录的 📊</span>
+                        </div>
+                        <button type='button' class='w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-lg transition-custom' id='check-step-guess'>提交猜测</button>
+                        <p class='mt-4 text-gray-600 hidden' id='step-result'></p>
+                    </div>
+
+                    <!-- 2. 随机建议卡片 -->
+                    <div class='bg-white rounded-xl shadow-md p-6 text-center card-hover'>
+                        <div class='w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4'>
+                            <i class='fas fa-lightbulb text-green-600 text-2xl'></i>
+                        </div>
+                        <h3 class='text-xl font-semibold text-gray-800 mb-2'>随机建议</h3>
+                        <p class='text-gray-500 text-sm mb-6'>💡 生活小贴士</p>
+                        <div class='has-tooltip'>
+                            <button type='button' class='w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-4 rounded-lg transition-custom' id='random-tip'>点我，我给你生活小贴士</button>
+                            <span class='tooltip left-1/2 transform -translate-x-1/2'>可能很管用，也可能只是个笑话 😜</span>
+                        </div>
+                        <div class='mt-6 p-4 bg-gray-50 rounded-lg text-gray-700 min-h-20 flex items-center justify-center' id='tip-result'>点击上方按钮获取随机小贴士</div>
+                    </div>
+
+                    <!-- 3. 计划安排卡片 -->
+                    <div class='bg-white rounded-xl shadow-md p-6 text-center card-hover'>
+                        <div class='w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4'>
+                            <i class='fas fa-calendar-alt text-purple-600 text-2xl'></i>
+                        </div>
+                        <h3 class='text-xl font-semibold text-gray-800 mb-2'>计划安排</h3>
+                        <p class='text-gray-500 text-sm mb-6'>🎲 工作与健身平衡</p>
+                        <div class='has-tooltip'>
+                            <button type='button' class='w-full bg-purple-500 hover:bg-purple-600 text-white font-medium py-3 px-4 rounded-lg transition-custom' id='generate-schedule'>帮我安排一周计划</button>
+                            <span class='tooltip left-1/2 transform -translate-x-1/2'>你敢试试吗？有点难哦 😎</span>
+                        </div>
+                        <div class='mt-6 p-4 bg-gray-50 rounded-lg text-gray-700 min-h-20 flex items-center justify-center' id='schedule-result'>点击上方按钮生成一周计划</div>
+                    </div>
+
+                </div>
             </div>
-            <div class="heading-actions">
-              <button class="button button-outline" id="resetRoi" type="button">Reset example</button>
-              <button class="button button-dark" id="saveRoi" type="button">Save Estimate</button>
-            </div>
-          </div>
-
-          <div class="roi-layout">
-            <div class="roi-left-col">
-              <!-- 01 Location & Sales Assumptions -->
-              <div class="panel form-panel">
-                <div class="panel-head">
-                  <div class="roi-section-title">
-                    <span class="criterion-num">01</span>
-                    <div>
-                      <h3>Location & Sales Assumptions</h3>
-                      <p>Use a reasonable estimate. Exact sales data is not required at this stage.</p>
-                    </div>
-                  </div>
-                  <span class="step-tag">Property earnings estimate</span>
-                </div>
-                <div class="roi-fields-grid">
-                  <label class="field">
-                    <span>Location Name</span>
-                    <input id="roiLocation" value="Sunrise Apartments" placeholder="e.g. Sunrise Apartments" />
-                  </label>
-                  <label class="field">
-                    <span>Venue Type</span>
-                    <select id="roiVenue">
-                      <option value="Gym & Fitness Center">Gym & Fitness Center</option>
-                      <option value="Factory & Industrial Plant">Factory & Industrial Plant</option>
-                      <option value="Airport & Transit Hub">Airport & Transit Hub</option>
-                      <option value="Apartment & Residential" selected>Apartment & Residential</option>
-                      <option value="Construction Site">Construction Site</option>
-                      <option value="Hospital & Medical Center">Hospital & Medical Center</option>
-                      <option value="Hotel & Hospitality">Hotel & Hospitality</option>
-                      <option value="Office & Corporate Campus">Office & Corporate Campus</option>
-                      <option value="School & University Campus">School & University Campus</option>
-                    </select>
-                  </label>
-                  <label class="field">
-                    <span>Estimated Items Sold / Day</span>
-                    <input id="roiOrders" type="number" min="0" step="1" value="25" />
-                  </label>
-                  <label class="field">
-                    <span>Average Selling Price / Item</span>
-                    <div class="input-prefix">
-                      <i>$</i>
-                      <input id="roiTicket" type="number" min="0" step="0.01" value="2.45" />
-                    </div>
-                  </label>
-                  <label class="field">
-                    <span>Operating Days / Month</span>
-                    <input id="roiDays" type="number" min="0" max="31" step="1" value="30" />
-                  </label>
-                  <label class="field">
-                    <span>Partnership Term (Months)</span>
-                    <input id="roiPeriod" type="number" min="1" max="120" step="1" value="30" placeholder="Enter months directly, e.g. 30" />
-                  </label>
-                </div>
-                <div class="method-note">Estimated monthly sales = daily items sold × average selling price × operating days. The estimate is used only to calculate the property’s potential earnings.</div>
-              </div>
-
-              <!-- 02 Partnership Setup -->
-              <div class="panel form-panel">
-                <div class="panel-head">
-                  <div class="roi-section-title">
-                    <span class="criterion-num">02</span>
-                    <div>
-                      <h3>Partnership Setup</h3>
-                      <p>Choose how the property will benefit financially from the placement.</p>
-                    </div>
-                  </div>
-                  <span class="step-tag">Choose one</span>
-                </div>
-
-                <input type="hidden" id="roiDealType" value="revenueShare" />
-                <div class="roi-mode-grid" id="roiModeGrid" role="radiogroup" aria-label="Partnership Setup">
-                  <div class="roi-mode-card active" data-mode="revenueShare" tabindex="0" role="radio" aria-checked="true">
-                    <span class="roi-mode-mark">✓</span>
-                    <div class="roi-mode-symbol">％</div>
-                    <strong>Revenue Share</strong>
-                    <small>Property receives an agreed percentage of sales.</small>
-                  </div>
-                  <div class="roi-mode-card" data-mode="fixedRent" tabindex="0" role="radio" aria-checked="false">
-                    <span class="roi-mode-mark">✓</span>
-                    <div class="roi-mode-symbol">＄</div>
-                    <strong>Fixed Monthly Rent</strong>
-                    <small>Operator pays an agreed monthly placement fee.</small>
-                  </div>
-                  <div class="roi-mode-card" data-mode="amenity" tabindex="0" role="radio" aria-checked="false">
-                    <span class="roi-mode-mark">✓</span>
-                    <div class="roi-mode-symbol">✦</div>
-                    <strong>Amenity-Only</strong>
-                    <small>No direct payment; the cooler is provided as a site amenity.</small>
-                  </div>
-                </div>
-
-                <div class="roi-dynamic-box">
-                  <div class="field" id="roiShareField">
-                    <span>Property Revenue Share (%)</span>
-                    <input id="roiShare" type="number" min="0" max="100" step="0.5" value="10" />
-                    <small class="field-hint">Example: 10% of the agreed sales base.</small>
-                  </div>
-                  <div class="field" id="roiRentField" hidden>
-                    <span>Fixed Monthly Rent ($)</span>
-                    <div class="input-prefix">
-                      <i>$</i>
-                      <input id="roiRent" type="number" min="0" step="10" value="200" />
-                    </div>
-                    <small class="field-hint">Enter the monthly placement fee agreed with the property.</small>
-                  </div>
-                  <div class="roi-amenity-note" id="roiAmenityField" hidden>
-                    The Smart Cooler is provided as a site amenity. Direct monthly payment is $0; the value is convenience and service rather than revenue share or rent.
-                  </div>
-                </div>
-
-                <div class="method-note">Define the sales basis in the written agreement (for example, gross sales or sales after refunds, discounts and applicable taxes). This calculator does not determine the contract definition.</div>
-              </div>
-            </div>
-
-            <!-- Right Sidebar: Estimated Monthly Partner Earnings -->
-            <aside class="roi-results">
-              <div class="panel roi-summary-card">
-                <span class="result-label">ESTIMATED MONTHLY PARTNER EARNINGS</span>
-                <div class="roi-summary-sub">Estimated Monthly Partner Earnings</div>
-                <strong class="roi-big-value" id="landlordMonthly">$184</strong>
-                <div class="roi-earnings-basis" id="roiEarningsType">Based on 10% revenue share</div>
-
-                <div class="roi-summary-grid">
-                  <div class="roi-summary-metric">
-                    <span>Estimated Annual Earnings</span>
-                    <strong id="landlordAnnual">$2,205</strong>
-                  </div>
-                  <div class="roi-summary-metric">
-                    <span>Partnership-Term Earnings</span>
-                    <strong id="landlordTermTotal">$5,513</strong>
-                  </div>
-                </div>
-
-                <div class="roi-divider"></div>
-
-                <div class="roi-lineitems">
-                  <div class="roi-lineitem">
-                    <span>Estimated Monthly Sales</span>
-                    <strong id="roiMonthlySales">$1,838</strong>
-                  </div>
-                  <div class="roi-lineitem">
-                    <span>Partnership Model</span>
-                    <strong id="roiModelLabel">10% Revenue Share</strong>
-                  </div>
-                  <div class="roi-lineitem">
-                    <span>Partnership Term</span>
-                    <strong id="roiTermLabel">30 months</strong>
-                  </div>
-                </div>
-
-                <p class="scorer-disclaimer" style="margin-top:14px;">Illustrative estimate, not a sales or earnings guarantee. Actual results depend on sales, operating days and the written partnership terms.</p>
-
-                <div class="button-row" style="margin-top:18px;">
-                  <button class="button button-dark button-wide" id="roiToProposal" type="button">Next: Create a Business Proposal →</button>
-                </div>
-              </div>
-            </aside>
-          </div>
         </section>
 
-        <!-- Page 4: Business Proposal -->
-        <section class="page" id="page-proposal">
-          <div class="page-heading">
-            <div>
-              <div class="eyebrow">03 / AUTOMATED PROPOSAL GENERATOR</div>
-              <h1>Business Proposal</h1>
-              <p>Edit or toggle proposal modules on the left to update the live preview on the right; export as a webpage or print/save as PDF.</p>
+
+        <!-- ================================================================= -->
+        <!-- 7. 联系我板块 (CONTACT)                                           -->
+        <!-- ================================================================= -->
+        <section class='py-20 bg-white' id='contact'>
+            <div class='container mx-auto px-4 sm:px-6 lg:px-8'>
+                <div class='text-center mb-16'>
+                    <h2 class='text-3xl md:text-4xl font-bold text-gray-900 mb-4'>联系我</h2>
+                    <p class='text-xl text-gray-600 max-w-3xl mx-auto'>想聊聊吗？或者单纯来打个招呼 ✉️</p>
+                    <div class='w-20 h-1 bg-primary mx-auto mt-4 rounded-full'></div>
+                </div>
+
+                <div class='grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto'>
+                    <!-- 左侧：联系信息 -->
+                    <div>
+                        <div class='bg-gray-50 rounded-xl p-8 h-full'>
+                            <h3 class='text-2xl font-semibold text-gray-800 mb-6'>联系方式</h3>
+                            <p class='text-gray-600 mb-8'>可以通过邮箱、LinkedIn、GitHub 联系我<br />（鸽子邮递可选，但不保证准时 🐦）</p>
+                            
+                            <div class='space-y-6'>
+                                <div class='has-tooltip'>
+                                    <a class='flex items-center text-gray-700 hover:text-primary transition-custom' href='mailto:example@example.com'>
+                                        <div class='w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4'>
+                                            <i class='fas fa-envelope text-blue-600'></i>
+                                        </div>
+                                        <div>
+                                            <p class='text-sm text-gray-500'>邮箱</p>
+                                            <p class='font-medium'>zhuodepeng@gmail.com</p>
+                                        </div>
+                                    </a>
+                                    <span class='tooltip left-1/2 transform -translate-x-1/2'>点我，发封信吧，我保证不回鸽子 🕊️</span>
+                                </div>
+
+                                <div class='has-tooltip'>
+                                    <a aria-label='LinkedIn' onclick='showSecret(this)' class='flex items-center text-gray-700 hover:text-primary transition-custom' href='javascript:void(0);'>
+                                        <div class='w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4'>
+                                            <i class='fab fa-linkedin text-blue-600'></i>
+                                        </div>
+                                        <div>
+                                            <p class='text-sm text-gray-500'>LinkedIn</p>
+                                            <p class='font-medium'>卓德鹏</p>
+                                        </div>
+                                    </a>
+                                    <span class='tooltip left-1/2 transform -translate-x-1/2'>点击看看我平时折腾的东西，保证有趣 🔍</span>
+                                </div>
+
+                                <div class='has-tooltip'>
+                                    <a aria-label='GitHub' onclick='showSecret(this)' class='flex items-center text-gray-700 hover:text-primary transition-custom' href='javascript:void(0);'>
+                                        <div class='w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mr-4'>
+                                            <i class='fab fa-github text-gray-800'></i>
+                                        </div>
+                                        <div>
+                                            <p class='text-sm text-gray-500'>GitHub</p>
+                                            <p class='font-medium'>github.com/zhuodepeng</p>
+                                        </div>
+                                    </a>
+                                    <span class='tooltip left-1/2 transform -translate-x-1/2'>点击看看我平时折腾的东西，保证有趣 🔍</span>
+                                </div>
+                            </div>
+
+                            <div class='mt-10'>
+                                <h4 class='text-lg font-medium text-gray-800 mb-4'>关注我</h4>
+                                <div class='flex space-x-4'>
+                                    <a aria-label='Twitter' onclick='showSecret(this)' class='w-10 h-10 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-center transition-custom' href='javascript:void(0);'><i class='fab fa-twitter text-gray-700'></i></a>
+                                    <a aria-label='Instagram' onclick='showSecret(this)' class='w-10 h-10 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-center transition-custom' href='javascript:void(0);'><i class='fab fa-instagram text-gray-700'></i></a>
+                                    <a aria-label='微信' onclick='showSecret(this)' class='w-10 h-10 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-center transition-custom' href='javascript:void(0);'><i class='fab fa-weixin text-gray-700'></i></a>
+                                    <a aria-label='微博' onclick='showSecret(this)' class='w-10 h-10 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-center transition-custom' href='javascript:void(0);'><i class='fab fa-weibo text-gray-700'></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右侧：发送消息表单 -->
+                    <div>
+                        <form action='https://formspree.io/f/xrendpwz' method='POST' class='bg-white rounded-xl shadow-md p-8' id='contact-form'>
+                            <h3 class='text-2xl font-semibold text-gray-800 mb-6'>发送消息</h3>
+                            <div class='grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4'>
+                                <div>
+                                    <label class='block text-sm font-medium text-gray-700 mb-1' for='name'>姓名</label>
+                                    <input class='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom' id='name' name='name' placeholder='你的名字' type='text'/>
+                                </div>
+                                <div>
+                                    <label class='block text-sm font-medium text-gray-700 mb-1' for='email'>邮箱</label>
+                                    <input class='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom' id='email' name='email' placeholder='your@email.com' type='email'/>
+                                </div>
+                            </div>
+                            <div class='mb-4'>
+                                <label class='block text-sm font-medium text-gray-700 mb-1' for='subject'>主题</label>
+                                <input class='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom' id='subject' name='subject' placeholder='消息主题' type='text'/>
+                            </div>
+                            <div>
+                                <label class='block text-sm font-medium text-gray-700 mb-1' for='message'>消息</label>
+                                <textarea class='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom' id='message' name='message' placeholder='请输入你的消息...' rows='5'></textarea>
+                            </div>
+                            <button class='w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-lg shadow-md transition-custom mt-6' type='submit'>
+                                <i class='fas fa-paper-plane mr-2'></i> 发送消息
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="heading-actions">
-              <button class="button button-outline" id="loadProposalExample" type="button">Load Example</button>
-              <button class="button button-dark" id="exportProposal" type="button">Export Proposal ↗</button>
-            </div>
-          </div>
-          <div class="proposal-layout">
-            <div class="panel form-panel proposal-form">
-              <div class="panel-head">
+        </section>
+
+
+        </main>
+
+        <!-- ================================================================= -->
+        <!-- 8. 页脚区域 (FOOTER)                                              -->
+        <!-- ================================================================= -->
+                <!-- ================================================================= -->
+        <!-- 8. 页脚区域：由独立文件注入，切换页脚只改 FOOTER_SRC 一行即可      -->
+        <!-- ================================================================= -->
+        <div id='footer-slot'></div>
+        <script>
+          // ===== 页脚切换开关 =====
+          // 想换页脚，把下面这一行改成 'footer-dark.html' 即可，其他不用动
+          var FOOTER_SRC = 'footer-dark.html';
+          fetch(FOOTER_SRC)
+            .then(function (r) { if (!r.ok) { throw new Error('HTTP ' + r.status); } return r.text(); })
+            .then(function (html) { document.getElementById('footer-slot').innerHTML = html; })
+            .catch(function () {
+              document.getElementById('footer-slot').innerHTML =
+                "<footer class='py-12 text-center text-gray-400 text-sm'>页脚加载失败，请检查 FOOTER_SRC 指向的文件是否存在</footer>";
+            });
+        </script>
+
+    </div>
+
+
+    <!-- ================================================================= -->
+    <!-- 9. JAVASCRIPT 脚本交互逻辑                                         -->
+    <!-- ================================================================= -->
+
+    <!-- 导航菜单交互 -->
+    <script id='nav-script'>
+    document.addEventListener('DOMContentLoaded', function () {
+      var mobileMenuButton = document.getElementById('mobile-menu-button');
+      var mobileMenu = document.getElementById('mobile-menu');
+      mobileMenuButton.addEventListener('click', function () {
+        mobileMenu.classList.toggle('hidden');
+      });
+      
+      var mobileLinks = mobileMenu.querySelectorAll('a');
+      mobileLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+      
+      document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('href');
+          var targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    });
+    </script>
+
+    <!-- 小互动功能逻辑 -->
+    <script id='fun-script'>
+    document.addEventListener('DOMContentLoaded', function () {
+      // 步数猜测游戏
+      var checkStepGuess = document.getElementById('check-step-guess');
+      var stepGuessInput = document.getElementById('step-guess');
+      var stepResult = document.getElementById('step-result');
+      checkStepGuess.addEventListener('click', function () {
+        var userGuess = parseInt(stepGuessInput.value);
+        var actualSteps = Math.floor(Math.random() * 10000) + 5000;
+        if (isNaN(userGuess)) {
+          stepResult.textContent = '请输入一个有效的数字';
+          stepResult.classList.remove('hidden', 'text-green-600');
+          stepResult.classList.add('text-red-600');
+          return;
+        }
+        var difference = Math.abs(userGuess - actualSteps);
+        var feedback = '';
+        if (difference < 500) {
+          feedback = "太准了！我今天走了" + actualSteps + "步，你猜的只差了" + difference + "步！";
+        } else if (difference < 1000) {
+          feedback = "不错哦！我今天走了" + actualSteps + "步，你猜的差了" + difference + "步。";
+        } else if (difference < 3000) {
+          feedback = "还可以！我今天走了" + actualSteps + "步，你猜的差了" + difference + "步。";
+        } else {
+          feedback = "差得有点远哦！我今天走了" + actualSteps + "步，你猜的差了" + difference + "步。";
+        }
+        stepResult.textContent = feedback;
+        stepResult.classList.remove('hidden', 'text-red-600');
+        stepResult.classList.add('text-green-600');
+      });
+
+      // 随机小贴士
+      var randomTipButton = document.getElementById('random-tip');
+      var tipResult = document.getElementById('tip-result');
+      var tips = [
+        "每天喝够8杯水，保持身体水分充足。",
+        "尝试每天冥想10分钟，有助于减轻压力。",
+        "学习新技能时，每天坚持练习比一次性长时间练习更有效。",
+        "站立工作可以改善姿势，减轻背部压力。",
+        "睡前一小时避免使用电子设备，有助于提高睡眠质量。",
+        "微笑可以改善你的心情，即使你并不感到特别开心。",
+        "尝试每天写三件感恩的事情，培养积极心态。",
+        "深呼吸练习可以在几秒钟内帮助你冷静下来。",
+        "读书时，尝试在页边做笔记，提高理解和记忆。",
+        "偶尔给自己一个小奖励，庆祝完成小目标。",
+        "这个小贴士其实是个笑话，哈哈！",
+        "记得定期备份你的重要文件，以防意外丢失。",
+        "学习一项新技能时，教给别人是巩固知识的好方法。"
+      ];
+      randomTipButton.addEventListener('click', function () {
+        var randomIndex = Math.floor(Math.random() * tips.length);
+        tipResult.textContent = tips[randomIndex];
+        tipResult.style.opacity = '0';
+        setTimeout(function () {
+          tipResult.style.transition = 'opacity 0.5s';
+          tipResult.style.opacity = '1';
+        }, 50);
+      });
+
+      // 生成一周计划
+      var generateScheduleButton = document.getElementById('generate-schedule');
+      var scheduleResult = document.getElementById('schedule-result');
+      var workTasks = ["数据分析项目推进", "市场调研报告撰写", "团队周会与进度同步", "客户沟通与需求确认", "技术文档整理与更新", "新项目规划与设计", "产品测试与优化"];
+      var fitnessActivities = ["晨跑5公里", "健身房力量训练", "游泳1小时", "瑜伽放松练习", "HIIT高强度间歇训练", "骑行探索新路线", "徒步旅行"];
+      generateScheduleButton.addEventListener('click', function () {
+        var weekDays = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"];
+        var scheduleHTML = '<ul class="text-left space-y-3">';
+        weekDays.forEach(function (day) {
+          var workTask = workTasks[Math.floor(Math.random() * workTasks.length)];
+          var fitnessActivity = fitnessActivities[Math.floor(Math.random() * fitnessActivities.length)];
+          scheduleHTML += "<li class='flex justify-between items-center'><span class='font-medium'>" + day + ":</span><span class='text-sm'>工作:" + workTask + ", 健身:" + fitnessActivity + "</span></li>";
+        });
+        scheduleHTML += '</ul>';
+        scheduleResult.innerHTML = scheduleHTML;
+        scheduleResult.style.opacity = '0';
+        setTimeout(function () {
+          scheduleResult.style.transition = 'opacity 0.5s';
+          scheduleResult.style.opacity = '1';
+        }, 50);
+      });
+    });
+    </script>
+
+<!-- [JSMOD] 联系表单提交处理（接通 Formspree 真实发件） -->
+<script id='form-script'>
+document.addEventListener('DOMContentLoaded', function () {
+  var contactForm = document.getElementById('contact-form');
+  
+  contactForm.addEventListener('submit', async function (e) {
+    e.preventDefault(); // 阻止页面默认刷新跳转
+    
+    var submitBtn = contactForm.querySelector('button[type="submit"]');
+    var originalBtnText = submitBtn.innerHTML;
+
+    // 1. 基础必填项校验
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var message = document.getElementById('message').value;
+
+    if (!name || !email || !message) {
+      alert('请填写所有必填字段');
+      return;
+    }
+
+    // 2. 按钮切换为加载中状态
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> 发送中...';
+
+    // 3. 打包表单数据
+    var formData = new FormData(contactForm);
+
+    try {
+      // 4. 发送数据给 Formspree
+      var response = await fetch(contactForm.action, {
+        method: contactForm.method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        alert('邮件已成功发至 Devin 的邮箱！我会尽快回复你 ✉️');
+        contactForm.reset(); // 清空表单
+      } else {
+        alert('发送失败，请稍后再试或直接发邮件联系我。');
+      }
+    } catch (error) {
+      alert('网络请求异常，请检查网络后重试。');
+    } finally {
+      // 5. 恢复按钮原始状态
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnText;
+    }
+  });
+});
+</script>
+
+    <!-- 滚动视差与动画逻辑 -->
+    <script id='scroll-script'>
+    document.addEventListener('DOMContentLoaded', function () {
+      var nav = document.querySelector('nav');
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 100) {
+          nav.classList.add('shadow-md');
+          nav.classList.remove('shadow-sm');
+        } else {
+          nav.classList.remove('shadow-md');
+          nav.classList.add('shadow-sm');
+        }
+      });
+
+      var animateOnScroll = function () {
+        var elements = document.querySelectorAll('.card-hover');
+        elements.forEach(function (element) {
+          var elementPosition = element.getBoundingClientRect().top;
+          var windowHeight = window.innerHeight;
+          if (elementPosition < windowHeight - 100) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+          }
+        });
+      };
+
+      document.querySelectorAll('.card-hover').forEach(function (element) {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+      });
+
+      animateOnScroll();
+      window.addEventListener('scroll', animateOnScroll);
+    });
+    </script>
+
+    <!-- 免责声明文字动态渲染 -->
+    <script id='disclaimer-script'>
+    document.addEventListener('DOMContentLoaded', function () {
+      var disclaimerElement = document.getElementById('disclaimer');
+      disclaimerElement.textContent = '此页面由AI生成，仅做测试用';
+    });
+    </script>
+
+<!-- 引入动态打字机特效库 -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+<!-- [JSMOD] 首页动态打字机效果 -->
+<script id='typed-script'>
+document.addEventListener('DOMContentLoaded', function () {
+  if (document.getElementById('typed-text')) {
+    var typed = new Typed('#typed-text', {
+      strings: [
+        "数据、科技、创意的混合体",
+        "第一性原理爱好者",
+        "模型思维实践者",
+        "Think Deep. Build Better."
+      ],
+      typeSpeed: 60,      // 打字速度 (毫秒)
+      backSpeed: 30,      // 回退删除速度
+      backDelay: 2000,    // 停留展示时间
+      loop: true,         // 是否无限循环
+      cursorChar: '|',    // 光标样式
+      autoInsertCss: true
+    });
+  }
+});
+</script>
+
+<!-- [JSMOD] 右下角悬浮按钮逻辑 -->
+<script id='fab-script'>
+document.addEventListener('DOMContentLoaded', function () {
+    var floatingWidget = document.getElementById('floating-widget');
+    var backToTopBtn = document.getElementById('back-to-top');
+
+    // 1. 监听页面滚动，控制火箭的显示与隐藏
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 400) {
+            // 向下滚动超过 400 像素时，滑出显示
+            floatingWidget.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            floatingWidget.classList.add('translate-y-0', 'opacity-100');
+        } else {
+            // 靠近顶部时，隐藏回去
+            floatingWidget.classList.remove('translate-y-0', 'opacity-100');
+            floatingWidget.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+        }
+    });
+
+    // 2. 点击火箭，平滑滚动到顶部
+    backToTopBtn.addEventListener('click', function () {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+});
+</script>
+
+<!-- [JSMOD] 卡片分类动态筛选逻辑 (已修复移动端蓝底蓝字幽灵悬浮Bug) -->
+<script id='filter-script'>
+document.addEventListener('DOMContentLoaded', function () {
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    var cards = document.querySelectorAll('.portfolio-card');
+
+    // 1. 预先给所有卡片加上平滑的 CSS 过渡属性
+    cards.forEach(function(card) {
+        card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+    });
+
+    filterBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var filterValue = this.getAttribute('data-filter');
+
+            // 2. 按钮样式切换（核心修复区）
+            filterBtns.forEach(function (b) {
+                // 【其他按钮】：恢复白底灰字，并【动态加上】鼠标悬浮变蓝字的效果
+                b.classList.remove('bg-primary', 'text-white', 'border-primary');
+                b.classList.add('bg-white', 'text-gray-600', 'border-gray-300', 'hover:border-primary', 'hover:text-primary');
+            });
+            
+            // 【当前选中按钮】：设置蓝底白字，并【强制剥离】悬浮变蓝的效果，彻底根绝手机端冲突
+            this.classList.remove('bg-white', 'text-gray-600', 'border-gray-300', 'hover:border-primary', 'hover:text-primary');
+            this.classList.add('bg-primary', 'text-white', 'border-primary');
+
+            // 3. 核心动画逻辑更新：避免排版冲突
+            cards.forEach(function (card) {
+                var cardCategory = card.getAttribute('data-category');
+                
+                if (filterValue === 'all' || filterValue === cardCategory) {
+                    // 【匹配的卡片】
+                    card.style.display = 'block'; 
+                    setTimeout(function() {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    }, 50);
+                } else {
+                    // 【不匹配的卡片】
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.95)';
+                    card.style.display = 'none'; 
+                }
+            });
+        });
+    });
+});
+</script>
+
+<!-- ==================== 1. 本地仓库进场：直接读取同目录下的 js 文件 ==================== -->
+<script src="./fireworks.js"></script>
+
+<!-- ==================== 2. 点火逻辑：头像单击真实烟花升空爆炸 ==================== -->
+<script id='easter-egg-fireworks-script'>
+document.addEventListener('DOMContentLoaded', function () {
+    const avatar = document.querySelector('img[alt="卓德鹏头像"]');
+    let isPlaying = false; 
+
+    if (avatar) {
+        avatar.style.cursor = 'pointer';
+
+        avatar.addEventListener('click', function () {
+            if (isPlaying) return; 
+            isPlaying = true;
+
+            // 1. 拉起透明夜空幕布
+            const fwContainer = document.createElement('div');
+            fwContainer.style.position = 'fixed';
+            fwContainer.style.top = '0';
+            fwContainer.style.left = '0';
+            fwContainer.style.width = '100%';
+            fwContainer.style.height = '100%';
+            fwContainer.style.zIndex = '9999'; 
+            fwContainer.style.pointerEvents = 'none';
+            document.body.appendChild(fwContainer);
+
+            // 2. 兼容并配置烟花参数 (此时读取的绝对是本地稳定代码)
+            const FW = window.Fireworks.default || window.Fireworks;
+            const fireworks = new FW(fwContainer, {
+                hue: { min: 0, max: 360 },        
+                delay: { min: 15, max: 30 },      
+                rocketsPoint: { min: 10, max: 90 },
+                opacity: 0.5,                     
+                acceleration: 1.05,               
+                friction: 0.97,                   
+                gravity: 1.5,                     
+                particles: 120,                   
+                traceLength: 3,                   
+                traceSpeed: 10,                   
+                explosion: 5,                     
+                intensity: 40,                    
+                flickerParticles: true,           
+                lineStyle: 'round'                
+            });
+
+// 3. 点火升空
+            fireworks.start();
+            console.log("%c🎆 咻~ 嘭！全屏烟花阵列已启动！", "color: #ef4444; font-size: 20px; font-weight: bold;");
+
+            // 4. 高级时间线控制：平滑衰减与自然打扫战场
+            
+            // 阶段 A：3.5秒后，把发射密集度(intensity)从 40 降到 10，营造慢慢变少的感觉
+            setTimeout(() => {
+                fireworks.updateOptions({ intensity: 10 });
+            }, 3500);
+
+            // 阶段 B：5.5秒后，彻底停止发射新烟花
+            setTimeout(() => {
+                fireworks.stop();
+            }, 5500);
+
+            // 阶段 C：9秒后（留出整整 3.5 秒让最后一波星星自然下落、闪烁并完全变暗消失），再彻底撤走幕布
+            setTimeout(() => {
+                document.body.removeChild(fwContainer);
+                isPlaying = false; // 解锁下一次点击
+            }, 9000);
+        });
+    }
+});
+</script>
+
+<!-- ==================== 投资估值弹窗模块 (已深度优化版) ==================== -->
+<style>
+    /* ===== 投资估值看板 · 科技风样式（仅作用于弹窗，前缀 vm- 避免影响全站） ===== */
+    .vm-panel { border: 1px solid rgba(34,211,238,.22); box-shadow: 0 0 0 1px rgba(255,255,255,.04), 0 0 60px rgba(34,211,238,.14), 0 30px 60px rgba(2,6,23,.7); }
+    .vm-grid { background-image: linear-gradient(rgba(34,211,238,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,.05) 1px, transparent 1px); background-size: 32px 32px; mask-image: radial-gradient(ellipse at center, black 40%, transparent 90%); }
+    .vm-module { transition: border-color .25s ease, box-shadow .25s ease; }
+    .vm-module:focus-within { border-color: rgba(34,211,238,.4); box-shadow: 0 0 0 1px rgba(34,211,238,.15), 0 0 24px rgba(34,211,238,.08); }
+    .vm-range { -webkit-appearance: none; appearance: none; height: 4px; border-radius: 999px; background: linear-gradient(90deg, rgba(34,211,238,.35), rgba(34,211,238,.12)); outline: none; cursor: pointer; }
+    .vm-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 16px; height: 16px; border-radius: 999px; background: #22d3ee; border: 2px solid #0b1220; box-shadow: 0 0 10px rgba(34,211,238,.8); }
+    .vm-range::-moz-range-thumb { width: 14px; height: 14px; border-radius: 999px; background: #22d3ee; border: 2px solid #0b1220; box-shadow: 0 0 10px rgba(34,211,238,.8); }
+    .vm-bar { box-shadow: 0 0 12px rgba(34,211,238,.6); }
+    .vm-result, .vm-verdict { transition: border-color .25s ease; }
+</style>
+<div id="valuation-modal" class="fixed inset-0 z-[9999] hidden items-center justify-center opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-label="动态投资估值看板">
+    <div id="modal-backdrop" class="absolute inset-0 bg-[#020617]/85 backdrop-blur-md cursor-pointer"></div>
+
+    <div id="modal-panel" class="vm-panel relative z-10 mx-4 flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-[#0B1220] text-slate-200 transition-transform duration-300 scale-95">
+        <!-- 科技风网格背景 -->
+        <div class="vm-grid pointer-events-none absolute inset-0" aria-hidden="true"></div>
+        <div class="pointer-events-none absolute -top-24 left-1/2 h-48 w-96 -translate-x-1/2 rounded-full bg-cyan-500/20 blur-3xl" aria-hidden="true"></div>
+
+        <!-- 头部 HUD -->
+        <div class="relative z-10 flex shrink-0 items-center justify-between border-b border-cyan-400/15 bg-white/[0.03] px-5 py-4 sm:px-7">
+            <div class="flex items-center gap-4">
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-400/30 bg-cyan-400/10 text-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.25)]">
+                    <i class="fas fa-chart-line"></i>
+                </div>
                 <div>
-                  <h3>Proposal Modules</h3>
-                  <p>Modules 01 & 02 are required core sections; check or uncheck 03–08 as needed.</p>
-                </div>
-                <span class="step-tag">MODULAR EDIT</span>
-              </div>
-
-              <!-- Module 01: Partnership Overview (Required) -->
-              <div class="prop-module-card" data-module-card="basic">
-                <div class="prop-module-head">
-                  <div class="prop-module-check is-locked">
-                    <span class="criterion-num">01</span>
-                    <strong>Partnership Overview</strong>
-                  </div>
-                  <span class="step-tag">REQUIRED</span>
-                </div>
-                <div class="prop-module-body">
-                  <div class="form-grid">
-                    <div class="field full logo-upload-field" style="padding-top:0;">
-                      <span>Company Logo</span>
-                      <small class="field-hint">Upload your company logo to personalize your proposal.</small>
-                      <input id="propLogoInput" type="file" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp" hidden />
-                      <div class="logo-upload-bar">
-                        <div class="logo-preview-wrap" id="propLogoPreviewWrap" hidden>
-                          <img id="propLogoPreviewImg" src="" alt="Company Logo Preview" />
-                        </div>
-                        <div class="logo-upload-actions">
-                          <button class="button button-outline button-small" id="uploadLogoBtn" type="button">Upload Logo</button>
-                          <button class="button button-outline button-small" id="replaceLogoBtn" type="button" hidden>Replace Logo</button>
-                          <button class="button button-outline button-small doc-delete-btn" id="removeLogoBtn" type="button" hidden>Remove Logo</button>
-                        </div>
-                      </div>
+                    <div class="flex items-center gap-2">
+                        <span class="relative flex h-2 w-2">
+                            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
+                        </span>
+                        <span class="font-mono text-[10px] tracking-[0.25em] text-cyan-400/80">VALUATION CONSOLE · v2.0</span>
                     </div>
-                    <label class="field"><span>Prepared By</span><input id="propPreparedBy" placeholder="e.g. Devin Zhuo" /></label>
-                    <label class="field"><span>Proposal Date</span><input id="propDate" type="date" /></label>
-                    <label class="field full"><span>Proposal Title</span><input id="propTitle" value="Smart Retail Amenity Partnership Proposal" /></label>
-                    <label class="field"><span>Property / Location Name</span><input id="propProperty" placeholder="Property name" /></label>
-                    <label class="field"><span>City</span><input id="propCity" placeholder="City, State" /></label>
-                    <label class="field"><span>Venue Type</span>
-                      <select id="propVenue">
-                        <option value="Gym & Fitness Center">Gym & Fitness Center</option>
-                        <option value="Factory & Industrial Plant">Factory & Industrial Plant</option>
-                        <option value="Airport & Transit Hub">Airport & Transit Hub</option>
-                        <option value="Apartment & Residential" selected>Apartment & Residential</option>
-                        <option value="Construction Site">Construction Site</option>
-                        <option value="Hospital & Medical Center">Hospital & Medical Center</option>
-                        <option value="Hotel & Hospitality">Hotel & Hospitality</option>
-                        <option value="Office & Corporate Campus">Office & Corporate Campus</option>
-                        <option value="School & University Campus">School & University Campus</option>
-                      </select>
-                    </label>
-                    <label class="field"><span>Estimated Launch Date</span><input id="propLaunch" placeholder="e.g. 2-4 weeks after approval" /></label>
-                    <label class="field"><span>Operator Name</span><input id="propOperator" placeholder="Operator company name" /></label>
-                    <label class="field"><span>Contact Name</span><input id="propContactName" placeholder="Full name" /></label>
-                    <label class="field"><span>Contact Email</span><input id="propContactEmail" type="email" placeholder="name@example.com" /></label>
-                    <label class="field"><span>Contact Phone</span><input id="propContactPhone" type="tel" placeholder="(555) 019-2834" /></label>
-                  </div>
+                    <h2 class="mt-0.5 text-lg font-bold text-white sm:text-xl">动态投资估值看板</h2>
                 </div>
-              </div>
-
-              <!-- Module 02: Recommended Equipment (Required — Left only shows Model & Quantity + Add Equipment) -->
-              <div class="prop-module-card" data-module-card="equipment">
-                <div class="prop-module-head">
-                  <div class="prop-module-check is-locked">
-                    <span class="criterion-num">02</span>
-                    <strong>Recommended Equipment & Site Rendering</strong>
-                  </div>
-                  <button class="button button-outline button-small" id="addMachineRowBtn" type="button">+ Add Equipment</button>
-                </div>
-                <div class="prop-module-body">
-                  <div id="propMachinesList" class="prop-machines-list" style="margin-bottom:0;"></div>
-                </div>
-              </div>
-
-              <!-- Module 03: Partnership Model & Property Earnings (Optional — Moved right below 02) -->
-              <div class="prop-module-card" data-module-card="deal">
-                <div class="prop-module-head">
-                  <label class="prop-module-check">
-                    <input type="checkbox" id="modToggle_deal" data-mod-key="deal" checked />
-                    <span class="criterion-num">03</span>
-                    <strong>Partnership Model & Property Earnings</strong>
-                  </label>
-                  <button class="text-button" id="syncFromRoi" type="button">Sync Earnings Estimate</button>
-                </div>
-                <div class="prop-module-body">
-                  <div class="form-grid">
-                    <label class="field"><span>Partnership Model</span>
-                      <select id="propDeal">
-                        <option value="revenueShare">Revenue Share</option>
-                        <option value="fixedRent">Fixed Monthly Rent</option>
-                        <option value="amenity">Amenity-Only</option>
-                      </select>
-                    </label>
-                    <label class="field" id="propShareField"><span>Site Partner Share of Sales (%)</span><input id="propShare" type="number" min="0" max="100" value="10" /></label>
-                    <label class="field" id="propRentField" hidden><span>Fixed Monthly Rent ($)</span><input id="propRent" type="number" min="0" value="200" /></label>
-                    <label class="field"><span>Partnership Term (Months)</span><input id="propTerm" type="number" min="1" max="120" value="30" /></label>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Module 04: Venue Value Proposition (Optional) -->
-              <div class="prop-module-card" data-module-card="venueValue">
-                <div class="prop-module-head">
-                  <label class="prop-module-check">
-                    <input type="checkbox" id="modToggle_venueValue" data-mod-key="venueValue" checked />
-                    <span class="criterion-num">04</span>
-                    <strong>Venue Value Proposition</strong>
-                  </label>
-                  <button class="text-button" id="resetVenueValueBtn" type="button">Reset Default Copy</button>
-                </div>
-                <div class="prop-module-body">
-                  <label class="field full">
-                    <span>Auto-populated 4 core value points by venue (each line formats as a bullet item; text before ":" is automatically bolded)</span>
-                    <textarea id="propVenueValue" rows="5"></textarea>
-                  </label>
-                </div>
-              </div>
-
-              <!-- Module 05: Product Mix & Merchandising (Optional) -->
-              <div class="prop-module-card" data-module-card="planogram">
-                <div class="prop-module-head">
-                  <label class="prop-module-check">
-                    <input type="checkbox" id="modToggle_planogram" data-mod-key="planogram" checked />
-                    <span class="criterion-num">05</span>
-                    <strong>Product Mix & Merchandising</strong>
-                  </label>
-                  <button class="text-button" id="resetPlanogramBtn" type="button">Reset Product Mix</button>
-                </div>
-                <div class="prop-module-body">
-                  <label class="field full">
-                    <span>Auto-populated product mix by venue (each line formats as a bullet item; category names before ":" are automatically bolded)</span>
-                    <textarea id="propPlanogram" rows="5"></textarea>
-                  </label>
-                </div>
-              </div>
-
-              <!-- Module 06: Daily Operations & Warranty Support (Optional) -->
-              <div class="prop-module-card" data-module-card="operations">
-                <div class="prop-module-head">
-                  <label class="prop-module-check">
-                    <input type="checkbox" id="modToggle_operations" data-mod-key="operations" checked />
-                    <span class="criterion-num">06</span>
-                    <strong>Daily Operations & Warranty Support</strong>
-                  </label>
-                  <span class="step-tag">TURNKEY OPS</span>
-                </div>
-                <div class="prop-module-body">
-                  <div class="form-grid">
-                    <label class="field full">
-                      <span>1. Daily Operations</span>
-                      <textarea id="propService" rows="4">The Operator is responsible for product sourcing, regular restocking, machine cleaning, and routine maintenance. The Operator will monitor inventory and machine status, and coordinate with the Property Owner regarding site access and operational arrangements.
-The Property Owner agrees to provide a suitable installation area, access to electricity, and reasonable site access for restocking, cleaning, and maintenance. Both parties will coordinate any site-specific requirements to ensure smooth daily operations.</textarea>
-                    </label>
-                    <label class="field full">
-                      <span>2. Warranty & After-Sales Support</span>
-                      <textarea id="propWarranty" rows="4">The Operator is responsible for monitoring machine alerts, coordinating troubleshooting and repair services, and handling warranty claims through the equipment manufacturer, subject to applicable warranty terms. The Operator will maintain applicable business liability insurance and provide proof of coverage upon request.
-The Property Owner agrees to notify the Operator of any equipment issues, damage, or unusual conditions observed on-site, and to avoid unauthorized relocation, opening, or tampering with the machine. The Operator will coordinate necessary follow-up actions and keep the Property Owner informed of relevant service arrangements.</textarea>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Module 07: Compliance Documents (Optional) -->
-              <div class="prop-module-card" data-module-card="compliance">
-                <div class="prop-module-head">
-                  <label class="prop-module-check">
-                    <input type="checkbox" id="modToggle_compliance" data-mod-key="compliance" checked />
-                    <span class="criterion-num">07</span>
-                    <strong>Compliance Documents</strong>
-                  </label>
-                  <button class="text-button" type="button" data-goto="compliance">Manage Compliance Docs →</button>
-                </div>
-                <div class="prop-module-body">
-                  <div class="field full">
-                    <span>Check compliance files to attach (new files added in Compliance Center sync here automatically)</span>
-                    <div class="doc-select-grid" id="propDocSelectGrid"></div>
-                    <small class="muted-mini">Exported web proposals include download links for configured files; printing or saving as PDF automatically formats them as a formal verification checklist.</small>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Module 08: Final Arrangements & Additional Notes (Optional) -->
-              <div class="prop-module-card" data-module-card="finalNotes">
-                <div class="prop-module-head">
-                  <label class="prop-module-check">
-                    <input type="checkbox" id="modToggle_finalNotes" data-mod-key="finalNotes" checked />
-                    <span class="criterion-num">08</span>
-                    <strong>Final Arrangements & Additional Notes</strong>
-                  </label>
-                  <span class="step-tag">PRE-INSTALL</span>
-                </div>
-                <div class="prop-module-body">
-                  <div class="form-grid">
-                    <label class="field full">
-                      <span>1. Items to Be Confirmed</span>
-                      <textarea id="propConfirmItems" rows="6">The following details will be confirmed by both parties before installation:
-- Final machine placement and installation area.
-- Power supply and network availability.
-- Approved product categories and any site-specific restrictions.
-- Responsibility for electricity and other applicable site costs.
-- Revenue-sharing percentage or rental arrangement.
-- Installation date, site access, and operating hours.</textarea>
-                    </label>
-                    <label class="field full">
-                      <span>2. Additional Notes</span>
-                      <textarea id="propNotes" rows="3">Any additional requirements, site-specific arrangements, or special terms agreed upon by both parties may be documented here. Final arrangements will be subject to mutual agreement between the Property Owner and the Operator.</textarea>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Custom Modules Container (09, 10...) -->
-              <div id="propCustomModulesList" class="prop-custom-modules-list"></div>
-
-              <button class="button button-outline button-wide" id="addCustomModuleBtn" type="button" style="border-style:dashed;margin-top:6px;">
-                + Add Custom Section
-              </button>
-
-              <div class="form-actions">
-                <button class="button button-dark" id="saveProposal" type="button">Save to Current Project</button>
-                <span class="muted-mini">Live preview updates automatically as you toggle or edit modules</span>
-              </div>
             </div>
-            <div class="proposal-preview-wrap">
-              <div class="preview-toolbar">
-                <span><i></i> Live Preview</span>
-                <button class="text-button" id="printProposal" type="button">Print / Save as PDF ↗</button>
-              </div>
-              <article class="proposal-paper" id="proposalPreview"></article>
+            <div class="flex items-center gap-3">
+                <p class="hidden text-xs text-slate-500 sm:block">摒弃情绪 · 第一性原理拆解资产</p>
+                <button type='button' id="close-modal-btn" class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-slate-400 transition-all hover:border-rose-400/40 hover:text-rose-300 hover:rotate-90" aria-label="关闭弹窗">&times;</button>
             </div>
-          </div>
-        </section>
+        </div>
 
-        <!-- Page 5: Compliance Documents -->
-        <section class="page" id="page-compliance">
-          <div class="page-heading">
-            <div>
-              <div class="eyebrow">04 / COMPLIANCE REPOSITORY</div>
-              <h1>Compliance Documents</h1>
-              <p>Download HAHA equipment certifications or add documents requested by a specific property.</p>
-            </div>
-            <div class="heading-actions">
-              <button class="button button-outline" id="addComplianceLink" type="button">+ Add File Link</button>
-            </div>
-          </div>
-          <div class="compliance-banner">
-            <div>
-              <span class="eyebrow">DOCUMENT READINESS</span>
-              <h2>Keep important documents ready for property review.</h2>
-              <p>Access HAHA equipment certifications below, or add a document link when a property requests additional information.</p>
-            </div>
-          </div>
-          <div class="compliance-grid" id="complianceGrid"></div>
-          <div class="panel compliance-note-panel">
-            <div class="note-icon">i</div>
-            <div>
-              <strong>Document Sharing Notice</strong>
-              <p>Only share documents approved for external use. Keep tax forms, insurance policies, and other sensitive files in access-controlled storage. Add a sharing link only when the intended recipient is authorized to view it.</p>
-            </div>
-          </div>
-        </section>
+        <div class="relative z-10 flex flex-col gap-6 overflow-y-auto p-5 sm:p-7 lg:flex-row">
+            <!-- ============ 左侧：参数输入 ============ -->
+            <div class="w-full space-y-5 lg:w-[46%]">
 
-        <!-- Page 6: My Projects -->
-        <section class="page" id="page-projects">
-          <div class="page-heading">
-            <div>
-              <div class="eyebrow">MY LOCATION PIPELINE</div>
-              <h1>My Projects</h1>
-              <p>View and manage location projects saved in this browser.</p>
+                <!-- 参数 1：PE -->
+                <div class="vm-module rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                    <div class="mb-2.5 flex items-center justify-between">
+                        <label class="flex items-center gap-2 font-bold text-white" for="input-pe">
+                            <span class="font-mono text-xs text-cyan-400">01</span> 当前市盈率 (PE)
+                        </label>
+                        <span class="rounded-md border border-cyan-400/30 bg-cyan-400/10 px-2 py-0.5 text-[11px] font-semibold text-cyan-300">买入成本</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <input type="number" id="input-pe" value="8.5" step="0.1" min="1" class="w-full rounded-lg border border-white/15 bg-black/40 px-3 py-2 font-mono text-lg text-cyan-300 transition-all focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30">
+                        <input type="range" id="range-pe" min="1" max="60" step="0.1" value="8.5" class="vm-range w-28 sm:w-36" aria-label="市盈率滑块">
+                    </div>
+                    <p class="mt-2 text-xs leading-relaxed text-slate-500"><strong class="text-slate-400">含义：</strong>回本年限。假设利润不变，花 8.5 年赚回本金。数值越低，资产越便宜。</p>
+                </div>
+
+                <!-- 参数 2：股息率 -->
+                <div class="vm-module rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                    <div class="mb-2.5 flex items-center justify-between">
+                        <label class="flex items-center gap-2 font-bold text-white" for="input-dividend">
+                            <span class="font-mono text-xs text-emerald-400">02</span> 当前股息率 (%)
+                        </label>
+                        <span class="rounded-md border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 text-[11px] font-semibold text-emerald-300">确定性收益</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <input type="number" id="input-dividend" value="3.2" step="0.1" min="0" max="15" class="w-full rounded-lg border border-white/15 bg-black/40 px-3 py-2 font-mono text-lg text-emerald-300 transition-all focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/30">
+                        <input type="range" id="range-dividend" min="0" max="10" step="0.1" value="3.2" class="vm-range w-28 sm:w-36" aria-label="股息率滑块">
+                    </div>
+                    <p class="mt-2 text-xs leading-relaxed text-slate-500"><strong class="text-slate-400">含义：</strong>即使大盘不动，企业每年打到你账户的真金白银比例（类似利息）。</p>
+                </div>
+
+                <!-- 参数 3：增长率 -->
+                <div class="vm-module rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                    <div class="mb-2.5 flex items-center justify-between">
+                        <label class="flex items-center gap-2 font-bold text-white" for="input-growth">
+                            <span class="font-mono text-xs text-violet-400">03</span> 预期盈利增长率 (%)
+                        </label>
+                        <span class="rounded-md border border-violet-400/30 bg-violet-400/10 px-2 py-0.5 text-[11px] font-semibold text-violet-300">成长性收益</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <input type="number" id="input-growth" value="6.0" step="0.5" min="-10" max="30" class="w-full rounded-lg border border-white/15 bg-black/40 px-3 py-2 font-mono text-lg text-violet-300 transition-all focus:border-violet-400 focus:ring-2 focus:ring-violet-400/30">
+                        <input type="range" id="range-growth" min="-10" max="30" step="0.5" value="6" class="vm-range w-28 sm:w-36" aria-label="预期盈利增长率滑块">
+                    </div>
+                    <p class="mt-2 text-xs leading-relaxed text-slate-500"><strong class="text-slate-400">含义：</strong>企业赚钱能力的增速，即每年利润的自然增长率。</p>
+                </div>
+
+                <!-- 示例预设（非实时数据） -->
+                <div class="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+                    <p class="mb-2 text-[11px] tracking-wider text-slate-500">⚡ 示例预设 <span class="text-slate-600">（非实时数据，一键填入后可按需修改）</span></p>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" class="vm-preset rounded-lg border border-white/15 px-3 py-1.5 text-xs font-medium text-slate-300 transition-all hover:border-cyan-400/50 hover:text-cyan-300" data-pe="12.2" data-dividend="2.8" data-growth="6.0">沪深300</button>
+                        <button type="button" class="vm-preset rounded-lg border border-white/15 px-3 py-1.5 text-xs font-medium text-slate-300 transition-all hover:border-emerald-400/50 hover:text-emerald-300" data-pe="7.5" data-dividend="5.2" data-growth="4.0">中证红利</button>
+                        <button type="button" class="vm-preset rounded-lg border border-white/15 px-3 py-1.5 text-xs font-medium text-slate-300 transition-all hover:border-violet-400/50 hover:text-violet-300" data-pe="28.0" data-dividend="0.6" data-growth="12.0">纳指100</button>
+                    </div>
+                </div>
+
+                <div class="flex gap-3">
+                    <button type='button' id="calc-btn" class="flex-1 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 py-3 font-bold text-white shadow-[0_0_24px_rgba(34,211,238,0.35)] transition-all hover:brightness-110 hover:shadow-[0_0_36px_rgba(34,211,238,0.5)] active:scale-[.98]">
+                        <i class="fas fa-sync-alt mr-2"></i> 重新计算估值
+                    </button>
+                    <button id="reset-btn" class="rounded-xl border border-white/15 px-4 py-3 text-sm font-semibold text-slate-400 transition-all hover:border-white/30 hover:text-white" type="button">重置</button>
+                </div>
             </div>
-            <div class="heading-actions">
-              <button class="button button-dark" id="newProjectList" type="button">+ New Project</button>
+
+            <!-- ============ 右侧：结果 ============ -->
+            <div class="flex w-full flex-col gap-4 lg:w-[54%]">
+
+                <!-- 综合信号 -->
+                <div id="verdict-box" class="vm-verdict rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                    <div class="flex items-center justify-between">
+                        <span class="font-mono text-[11px] tracking-[0.2em] text-slate-500">SYSTEM VERDICT · 综合信号</span>
+                        <span id="verdict-signal" class="rounded-md px-2.5 py-1 text-xs font-bold text-slate-400">待计算</span>
+                    </div>
+                    <p id="verdict-text" class="mt-2 text-sm leading-relaxed text-slate-400">输入参数并点击“重新计算”，系统将输出估值结论。</p>
+                </div>
+
+                <!-- 模型一：盈利收益率法 -->
+                <div class="vm-result relative overflow-hidden rounded-xl border border-cyan-400/25 bg-white/[0.03] p-4">
+                    <div class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-cyan-400 to-blue-500 shadow-[0_0_12px_rgba(34,211,238,0.8)]" aria-hidden="true"></div>
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-bold text-white">模型一 · 盈利收益率法</h3>
+                        <span class="rounded-md bg-cyan-400/10 px-2 py-0.5 font-mono text-[11px] text-cyan-300">1 ÷ PE × 100%</span>
+                    </div>
+                    <p class="mt-2 font-mono text-xs text-slate-500">计算过程：<span id="formula-yield" class="text-cyan-400">--</span></p>
+                    <div class="mt-3 flex items-end justify-between gap-3">
+                        <div>
+                            <span id="result-yield" class="font-mono text-4xl font-black text-cyan-300 tabular-nums drop-shadow-[0_0_12px_rgba(34,211,238,0.45)]">--%</span>
+                            <p class="mt-1 text-[11px] text-slate-500">全资买入后，每年净利润的直接回报率</p>
+                        </div>
+                        <span id="yield-badge" class="mb-1 rounded-md bg-slate-700/50 px-2.5 py-1 text-xs font-bold text-slate-300">等待计算</span>
+                    </div>
+                    <div class="mt-3 h-2 w-full overflow-hidden rounded-full bg-white/10">
+                        <div id="yield-bar" class="vm-bar h-2 rounded-full transition-all duration-700" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- 模型二：博格公式两因子 -->
+                <div class="vm-result relative overflow-hidden rounded-xl border border-violet-400/25 bg-white/[0.03] p-4">
+                    <div class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-violet-400 to-fuchsia-500 shadow-[0_0_12px_rgba(167,139,250,0.8)]" aria-hidden="true"></div>
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-bold text-white">模型二 · 博格公式两因子</h3>
+                        <span class="rounded-md bg-violet-400/10 px-2 py-0.5 font-mono text-[11px] text-violet-300">股息率 + 预期增长率</span>
+                    </div>
+                    <p class="mt-2 font-mono text-xs text-slate-500">长期年化收益 ≈ <span id="result-bogle" class="font-mono text-2xl font-black text-violet-300 tabular-nums">--%</span></p>
+                    <div class="mt-3 grid grid-cols-2 gap-3">
+                        <div class="rounded-lg border border-emerald-400/20 bg-emerald-400/5 p-3">
+                            <span class="text-[11px] text-slate-500">分红收益</span>
+                            <p class="mt-0.5 font-mono text-xl font-bold text-emerald-300 tabular-nums"><span id="detail-div">--</span>%</p>
+                        </div>
+                        <div class="rounded-lg border border-violet-400/20 bg-violet-400/5 p-3">
+                            <span class="text-[11px] text-slate-500">成长收益</span>
+                            <p class="mt-0.5 font-mono text-xl font-bold text-violet-300 tabular-nums"><span id="detail-growth">--</span>%</p>
+                        </div>
+                    </div>
+                    <p class="mt-2 text-[11px] leading-relaxed text-slate-500">赚企业现金分红的钱 + 赚企业体量变大的钱，构成长期年化回报。</p>
+                </div>
+
+                <p class="text-center text-[11px] text-slate-600">以上模型仅基于你输入的参数进行估算，不构成投资建议。市场有风险，决策需谨慎。</p>
             </div>
-          </div>
-          <div class="project-toolbar">
-            <div class="search-box"><span>🔍</span><input id="projectSearch" placeholder="Search location or city" /></div>
-            <span class="muted-mini" id="projectCountLabel">0 projects</span>
-          </div>
-          <div id="projectsGrid" class="projects-grid"></div>
-        </section>
-
-        <footer class="app-footer">
-          <span>HAHA VENDING · LOCATION PITCH BUILDER</span>
-          <span>Smart Retail Partnership Workspace</span>
-        </footer>
-      </div>
-    </main>
-  </div>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-  <!-- New Project Modal -->
-  <div class="modal-backdrop" id="newProjectModal" hidden>
-    <div class="modal">
-      <button class="modal-close" id="closeModal" type="button" aria-label="Close">×</button>
-      <div class="modal-head">
-        <div class="eyebrow">NEW LOCATION PROJECT</div>
-        <h3>New Location Project</h3>
-        <p>Name the project first, then add the location assessment, earnings estimate, and proposal details.</p>
-      </div>
-      <div class="form-grid">
-        <label class="field full"><span>Project / Location Name <em>*</em></span><input id="newProjectName" placeholder="e.g. Sunrise Apartments" /></label>
-        <label class="field full"><span>City / State</span><input id="newProjectCity" placeholder="e.g. Tampa, FL" /></label>
-      </div>
-      <div class="modal-actions">
-        <button class="button button-outline" id="cancelNewProject" type="button">Cancel</button>
-        <button class="button button-yellow" id="confirmNewProject" type="button">Create Project ↗</button>
-      </div>
+        </div>
     </div>
-  </div>
+</div>
 
-  <!-- Compliance Link Modal -->
-  <div class="modal-backdrop" id="complianceModal" hidden>
-    <div class="modal">
-      <button class="modal-close" id="closeComplianceModal" type="button" aria-label="Close">×</button>
-      <div class="modal-head">
-        <div class="eyebrow">COMPLIANCE DOCUMENT</div>
-        <h3 id="complianceModalTitle">Add File Link</h3>
-        <p id="complianceModalDesc">Enter a document title and an HTTPS or Google Drive sharing link.</p>
-      </div>
-      <div class="form-grid">
-        <label class="field full" id="complianceTitleField">
-          <span>Document Title <em>*</em></span>
-          <input id="complianceDocTitle" placeholder="e.g. Certificate of Insurance (COI) / Business License" />
-        </label>
-        <label class="field full">
-          <span>File Link (HTTPS / Google Drive) <em>*</em></span>
-          <input id="complianceDocUrl" type="url" placeholder="https://drive.google.com/..." />
-        </label>
-      </div>
-      <div class="modal-actions">
-        <button class="button button-outline" id="cancelComplianceModal" type="button">Cancel</button>
-        <button class="button button-yellow" id="confirmComplianceModal" type="button">Save Link</button>
-      </div>
+        
+<!-- ==================== 右下角悬浮操作区 ==================== -->
+    <div id="floating-widget" class="fixed bottom-8 right-8 z-50 transition-all duration-500 transform translate-y-20 opacity-0 pointer-events-none">
+        <div class="has-tooltip">
+            <button type='button' id="back-to-top" class="w-12 h-12 bg-gray-900 hover:bg-primary text-white rounded-full shadow-lg flex items-center justify-center transition-custom hover:shadow-2xl hover:-translate-y-1 focus:outline-none">
+                <i class="fas fa-rocket"></i>
+            </button>
+            <span class="tooltip right-full top-1/2 transform -translate-y-1/2 mr-3 whitespace-nowrap bg-gray-800 text-white text-xs px-2 py-1 rounded">
+                发射回顶部 🚀
+            </span>
+        </div>
     </div>
-  </div>
 
-  <!-- Delete Confirm Modal -->
-  <div class="modal-backdrop" id="deleteConfirmModal" hidden>
-    <div class="modal">
-      <button class="modal-close" id="closeDeleteModal" type="button" aria-label="Close">×</button>
-      <div class="modal-head">
-        <div class="eyebrow">CONFIRM DELETE</div>
-        <h3>Confirm Project Deletion</h3>
-        <p id="deleteModalMessage">Delete this project? This action cannot be undone.</p>
-      </div>
-      <div class="modal-actions">
-        <button class="button button-outline" id="cancelDeleteModal" type="button">Cancel</button>
-        <button class="button button-dark" id="confirmDeleteModal" type="button">Confirm Delete</button>
-      </div>
-    </div>
-  </div>
+<!-- ==================== 投资估值弹窗交互逻辑 ==================== -->
+<script id='valuation-modal-script'>
+document.addEventListener('DOMContentLoaded', function () {
+    // 1. 抓取开关弹窗的关键元素
+    const modal = document.getElementById('valuation-modal');
+    const panel = document.getElementById('modal-panel');
+    const openBtn = document.getElementById('open-valuation-btn');
+    const closeBtn = document.getElementById('close-modal-btn');
+    const backdrop = document.getElementById('modal-backdrop');
 
-  <script type="module" src="./js/app.js"></script>
-</body>
+    // 2. 打开弹窗的动画逻辑
+    function openModal() {
+        modal.classList.remove('hidden'); // 先让元素在页面上占位
+        modal.classList.add('flex');
+        
+        // 延迟 10 毫秒执行透明度和缩放变化，强制浏览器渲染过渡动画
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            panel.classList.remove('scale-95');
+        }, 10);
+    }
+
+    // 3. 关闭弹窗的动画逻辑
+    function closeModal() {
+        modal.classList.add('opacity-0');
+        panel.classList.add('scale-95');
+        
+        // 等待 300 毫秒（跟 CSS 里的 duration-300 一致）动画播完后，再彻底隐藏元素
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }, 300);
+    }
+
+    // 4. 绑定点击事件
+    if(openBtn) openBtn.addEventListener('click', openModal);
+    if(closeBtn) closeBtn.addEventListener('click', closeModal);
+    // 点击半透明黑色背景也能关闭弹窗
+    if(backdrop) backdrop.addEventListener('click', closeModal);
+
+
+    // ==================== 以下为计算器联动逻辑 ====================
+    // 双向绑定：让滑动条和输入框的数字实时同步
+    function syncInputAndRange(inputId, rangeId) {
+        const input = document.getElementById(inputId);
+        const range = document.getElementById(rangeId);
+        if(!input || !range) return;
+
+        input.addEventListener('input', () => range.value = input.value);
+        range.addEventListener('input', () => input.value = range.value);
+    }
+    
+    syncInputAndRange('input-pe', 'range-pe');
+    syncInputAndRange('input-dividend', 'range-dividend');
+    syncInputAndRange('input-growth', 'range-growth');
+
+    // 预设按钮一键填入数据
+    document.querySelectorAll('.vm-preset').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.getElementById('input-pe').value = this.dataset.pe;
+            document.getElementById('range-pe').value = this.dataset.pe;
+            
+            document.getElementById('input-dividend').value = this.dataset.dividend;
+            document.getElementById('range-dividend').value = this.dataset.dividend;
+            
+            document.getElementById('input-growth').value = this.dataset.growth;
+            document.getElementById('range-growth').value = this.dataset.growth;
+        });
+    });
+
+    // 核心计算逻辑
+    const calcBtn = document.getElementById('calc-btn');
+    if(calcBtn) {
+        calcBtn.addEventListener('click', function() {
+            // 获取输入值
+            const pe = parseFloat(document.getElementById('input-pe').value) || 1;
+            const div = parseFloat(document.getElementById('input-dividend').value) || 0;
+            const growth = parseFloat(document.getElementById('input-growth').value) || 0;
+
+            // 模型一：盈利收益率 (1 / PE)
+            const yieldRate = ((1 / pe) * 100).toFixed(2);
+            document.getElementById('formula-yield').innerText = `1 ÷ ${pe} × 100%`;
+            document.getElementById('result-yield').innerText = `${yieldRate}%`;
+            
+            const yieldBadge = document.getElementById('yield-badge');
+            const yieldBar = document.getElementById('yield-bar');
+            
+            // 盈利收益率水位判定
+            if(yieldRate >= 10) {
+                yieldBadge.innerText = "严重低估 (击球区)";
+                yieldBadge.className = "mb-1 rounded-md bg-emerald-500/20 px-2.5 py-1 text-xs font-bold text-emerald-400";
+                yieldBar.style.width = "90%";
+                yieldBar.className = "vm-bar h-2 rounded-full transition-all duration-700 bg-emerald-400";
+            } else if(yieldRate >= 6.5) {
+                yieldBadge.innerText = "估值合理";
+                yieldBadge.className = "mb-1 rounded-md bg-cyan-500/20 px-2.5 py-1 text-xs font-bold text-cyan-400";
+                yieldBar.style.width = "50%";
+                yieldBar.className = "vm-bar h-2 rounded-full transition-all duration-700 bg-cyan-400";
+            } else {
+                yieldBadge.innerText = "高估风险";
+                yieldBadge.className = "mb-1 rounded-md bg-rose-500/20 px-2.5 py-1 text-xs font-bold text-rose-400";
+                yieldBar.style.width = "15%";
+                yieldBar.className = "vm-bar h-2 rounded-full transition-all duration-700 bg-rose-400";
+            }
+
+            // 模型二：博格公式 (股息率 + 利润增长率)
+            const bogleRate = (div + growth).toFixed(2);
+            document.getElementById('detail-div').innerText = div.toFixed(1);
+            document.getElementById('detail-growth').innerText = growth.toFixed(1);
+            document.getElementById('result-bogle').innerText = `${bogleRate}%`;
+
+            // 综合判定结果
+            const signalBadge = document.getElementById('verdict-signal');
+            const signalText = document.getElementById('verdict-text');
+            
+            if(yieldRate >= 10 && bogleRate >= 10) {
+                signalBadge.innerText = "STRONG BUY · 极具性价比";
+                signalBadge.className = "rounded-md px-2.5 py-1 text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
+                signalText.innerHTML = `当前资产处于<strong>绝对低估区间</strong>。买入后不仅拥有极高的安全边际（盈利收益率 ${yieldRate}%），长期持有预期回报（${bogleRate}%）也跑赢大多数资产。建议逐步建仓。`;
+            } else if (yieldRate < 6.5) {
+                signalBadge.innerText = "WARNING · 估值过高";
+                signalBadge.className = "rounded-md px-2.5 py-1 text-xs font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30";
+                signalText.innerHTML = `当前市盈率（${pe}）过高，透支了未来的成长空间。除非企业能维持罕见的超高速增长，否则当前位置买入<strong>极易引发永久性本金损失</strong>。建议观望。`;
+            } else {
+                signalBadge.innerText = "HOLD · 估值合理";
+                signalBadge.className = "rounded-md px-2.5 py-1 text-xs font-bold bg-cyan-500/20 text-cyan-400 border border-cyan-500/30";
+                signalText.innerHTML = `当前资产估值处于中性区域。赚的是企业成长的钱，而不是估值修复的钱。如果你已经持有，可以继续拿着；如果准备新建仓，性价比一般，可以等待更好的击球区。`;
+            }
+        });
+    }
+
+    // 重置按钮逻辑
+    const resetBtn = document.getElementById('reset-btn');
+    if(resetBtn) {
+        resetBtn.addEventListener('click', function() {
+            document.getElementById('input-pe').value = 8.5;
+            document.getElementById('range-pe').value = 8.5;
+            document.getElementById('input-dividend').value = 3.2;
+            document.getElementById('range-dividend').value = 3.2;
+            document.getElementById('input-growth').value = 6.0;
+            document.getElementById('range-growth').value = 6.0;
+            
+            // 触发一次点击，刷新数据
+            if(calcBtn) calcBtn.click();
+        });
+    }
+});
+</script>
+    
+
+<script>
+  var SECRETS = [
+    '你猜我不说 😏',
+    '秘密都藏在拾光集里',
+    '这个问题，连我自己都没答案',
+    '猜对了也不告诉你',
+    '等我哪天想通了，第一个告诉你',
+    '嘘，这是个小秘密 🤫',
+    '在写了在写了（并没有）',
+    '这里真的什么都没有'
+  ];
+  function showSecret(el) {
+    var tip = document.getElementById('secret-tip');
+    if (!tip) {
+      tip = document.createElement('div');
+      tip.id = 'secret-tip';
+      document.body.appendChild(tip);
+    }
+    tip.textContent = SECRETS[Math.floor(Math.random() * SECRETS.length)];
+    var r = el.getBoundingClientRect();
+    var tw = tip.offsetWidth || 160;
+    var left = Math.min(Math.max(r.left + r.width / 2 - tw / 2, 12), window.innerWidth - tw - 12);
+    tip.style.left = left + 'px';
+    tip.style.top = Math.max(r.top - 44, 12) + 'px';
+    tip.classList.remove('show');
+    void tip.offsetWidth;
+    tip.classList.add('show');
+    clearTimeout(tip._timer);
+    tip._timer = setTimeout(function () { tip.classList.remove('show'); }, 2200);
+  }
+</script>
+</body> <!-- 这是你网页原本自带的结束标签 -->
 </html>
